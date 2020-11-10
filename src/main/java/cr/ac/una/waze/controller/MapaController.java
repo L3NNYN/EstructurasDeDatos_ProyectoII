@@ -179,8 +179,11 @@ public class MapaController extends Controller implements Initializable {
         calles[7][6] = new Calle(43);
         
         calles[8][6] = new Calle(107);
+        calles[8][9] = new Calle(66);
         calles[8][10] = new Calle(264);
         
+        calles[9][25] = new Calle(45);
+        calles[9][27] = new Calle(97);
         
         calles[10][8] = new Calle(264);
         calles[10][27] = new Calle(212);
@@ -374,7 +377,7 @@ public class MapaController extends Controller implements Initializable {
         calles[66][67] = new Calle(247);
         
         calles[67][66] = new Calle(247);
-        calles[67][56] = new Calle(2172);
+        calles[67][56] = new Calle(172);
         calles[67][69] = new Calle(202);
         
         calles[68][57] = new Calle(128);
