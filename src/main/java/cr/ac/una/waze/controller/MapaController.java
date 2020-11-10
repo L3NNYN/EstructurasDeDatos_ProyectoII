@@ -8,9 +8,16 @@ package cr.ac.una.waze.controller;
 import cr.ac.una.waze.util.Calle;
 import cr.ac.una.waze.util.Nodo;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 
 /**
  * FXML Controller class
@@ -23,15 +30,20 @@ public class MapaController extends Controller implements Initializable {
     private List<Nodo> nodos;
     
     private Calle[][] calles;
+    @FXML
+    private ImageView imvMapa;
+    @FXML
+    private AnchorPane root;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nodos = new ArrayList<>();
         calles = new Calle[78][78];
     }    
 
     @Override
     public void initialize() {
-        
+        iniList();
     }
     
     private void iniList(){
@@ -129,35 +141,30 @@ public class MapaController extends Controller implements Initializable {
         }
         
     }
-        calles[][] = new Calle(145);
-        calles[][] = new Calle(287);
-        calles[][] = new Calle(140);
-        calles[][] = new Calle(165);
-        calles[][] = new Calle(134);
-        calles[][] = new Calle(95);
-        
-        calles[][] = new Calle(55);
-        calles[][] = new Calle(75);
-        calles[][] = new Calle(105);
-        calles[][] = new Calle(103);
-        calles[][] = new Calle(71);
-        
-        calles[][] = new Calle(146);
-        calles[][] = new Calle(148);
-        calles[][] = new Calle(205);
-        calles[][] = new Calle(122);
-        calles[][] = new Calle(146);
-        
-        calles[][] = new Calle(60);
-        calles[][] = new Calle(97);
-        calles[][] = new Calle(106);
-        calles[][] = new Calle(65);
-        calles[][] = new Calle(63);
-        calles[][] = new Calle(92);
-        calles[][] = new Calle(94);
-        calles[][] = new Calle(102);
-        calles[][] = new Calle(102);
-        calles[][] = new Calle(43);
-        calles[][] = new Calle(95);
-        calles[][] = new Calle(47);
+
+    @FXML
+    private void onMouseClickedMapa(MouseEvent event) {
+        Circle c = new Circle(event.getX()+5, event.getY()+5, 5, Paint.valueOf("#000000"));
+        root.getChildren().add(c);
+        verPuntoCer(event.getX(), event.getY());
+        System.out.println("x: " + event.getX()+" y:" + event.getY());
+    }
+    
+    private void verPuntoCer(Double x, Double y){
+        Nodo aux = null;
+        Double auxX=0d,auxY=0d;
+        Double auxX2=999d,auxY2=999d;
+        for(Nodo n : nodos){
+            auxX = x - n.getX();
+            auxY = y - n.getY();
+            if(auxX < 0){ auxX=auxX*-1;}
+            if(auxY < 0){auxY=auxY*-1;}
+            if(auxX<auxX2 && auxY<auxY2){
+                auxX2=auxX;
+                auxY2=auxY;
+                aux=n;
+            }
+        }
+        System.out.println("El nodo más cercano es el " + aux.getId());
+    }
 }
