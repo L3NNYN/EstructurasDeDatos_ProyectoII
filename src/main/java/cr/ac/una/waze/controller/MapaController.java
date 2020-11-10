@@ -34,6 +34,87 @@ public class MapaController extends Controller implements Initializable {
         
     }
     
+    private void iniList(){
+        nodos.add(new Nodo(377,39)); // ini
+        nodos.add(new Nodo(312,98));  // izq 1
+        nodos.add(new Nodo(459,198)); // der 
+        nodos.add(new Nodo(398,225)); // izq 2
+        nodos.add(new Nodo(491,245)); // der
+        nodos.add(new Nodo(460,318)); // izq 3
+        nodos.add(new Nodo(535,316));
+        nodos.add(new Nodo(523,342)); // izq 4
+        nodos.add(new Nodo(578,386));
+        nodos.add(new Nodo(558,423)); // izq 5
+        nodos.add(new Nodo(664,530));
+        nodos.add(new Nodo(628,584)); // izq 6
+        
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+        nodos.add(new Nodo());
+    }
     
     private void IniMap(){
         for(int i=0;i<78;i++){
@@ -42,10 +123,8 @@ public class MapaController extends Controller implements Initializable {
             }
         }
         
-        calles[0][1] = new Calle();
-        
-        
-        
     }
+    
+    
     
 }
