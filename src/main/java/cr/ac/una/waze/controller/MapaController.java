@@ -141,8 +141,8 @@ public class MapaController extends Controller implements Initializable {
     }
     
     private void IniMap(){
-        for(int i=0;i<78;i++){
-            for(int j=0;j<78;j++){
+        for(int i=0;i<=80;i++){
+            for(int j=0;j<=80;j++){
                 calles[i][j] = null;
             }
         }
