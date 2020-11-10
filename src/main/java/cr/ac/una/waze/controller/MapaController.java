@@ -124,7 +124,35 @@ public class MapaController extends Controller implements Initializable {
         }
         
     }
-    
-    
-    
+        calles[][] = new Calle(145);
+        calles[][] = new Calle(287);
+        calles[][] = new Calle(140);
+        calles[][] = new Calle(165);
+        calles[][] = new Calle(134);
+        calles[][] = new Calle(95);
+        
+        calles[][] = new Calle(55);
+        calles[][] = new Calle(75);
+        calles[][] = new Calle(105);
+        calles[][] = new Calle(103);
+        calles[][] = new Calle(71);
+        
+        calles[][] = new Calle(146);
+        calles[][] = new Calle(148);
+        calles[][] = new Calle(205);
+        calles[][] = new Calle(122);
+        calles[][] = new Calle(146);
+        
+        calles[][] = new Calle(60);
+        calles[][] = new Calle(97);
+        calles[][] = new Calle(106);
+        calles[][] = new Calle(65);
+        calles[][] = new Calle(63);
+        calles[][] = new Calle(92);
+        calles[][] = new Calle(94);
+        calles[][] = new Calle(102);
+        calles[][] = new Calle(102);
+        calles[][] = new Calle(43);
+        calles[][] = new Calle(95);
+        calles[][] = new Calle(47);
 }

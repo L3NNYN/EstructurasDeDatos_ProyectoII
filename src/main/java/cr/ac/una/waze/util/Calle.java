@@ -18,9 +18,11 @@ public class Calle {
 
     public Calle() {
     }
-
+    
     public Calle(int peso) {
         this.peso = peso;
+        this.estado = "";
+        this.trafico = 0;
     }
 
     public int getPeso() {
