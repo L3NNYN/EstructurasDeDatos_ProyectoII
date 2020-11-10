@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +25,10 @@ public class MenuPrincipalController extends Controller implements Initializable
 
     @FXML
     private Button btnMapa;
+    @FXML
+    private TextField txt;
+    @FXML
+    private Label lbl;
 
     /**
      * Initializes the controller class.
@@ -41,6 +47,16 @@ public class MenuPrincipalController extends Controller implements Initializable
     private void onActionBtnMapa(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("Mapa");
         ((Stage)btnMapa.getScene().getWindow()).close();
+    }
+
+    @FXML
+    private void dividir(ActionEvent event) {
+        
+        String d = txt.getText();
+        int num = Integer.valueOf(d);
+        
+        Double dd = num/1.27;
+        lbl.setText(dd.toString());
     }
     
 }
