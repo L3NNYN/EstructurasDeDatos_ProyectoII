@@ -16,14 +16,11 @@ public class Nodo {
     
     private double x;
     private double y;
-    private List<Calle> calles;
 
     public Nodo() {
-        this.calles = new ArrayList<>();
     }
 
     public Nodo(double x, double y) {
-        this();
         this.x = x;
         this.y = y;
     }
@@ -42,14 +39,6 @@ public class Nodo {
 
     public void setY(double y) {
         this.y = y;
-    }
-
-    public List<Calle> getCalles() {
-        return calles;
-    }
-
-    public void setCalles(List<Calle> calles) {
-        this.calles = calles;
     }
     
 }

@@ -26,11 +26,24 @@ public class MapaController extends Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        calles = new Calle[76][76];
     }    
 
     @Override
     public void initialize() {
+        
+    }
+    
+    
+    private void IniMap(){
+        for(int i=0;i<76;i++){
+            for(int j=0;j<76;j++){
+                calles[i][j] = null;
+            }
+        }
+        
+        
+        
     }
     
 }
