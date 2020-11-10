@@ -212,6 +212,198 @@ public class MapaController extends Controller implements Initializable {
         calles[21][19] = new Calle(63);
         calles[21][22] = new Calle(94);
         
+        calles[22][37] = new Calle(89);
+        
+        calles[23][7] = new Calle(95);
+        calles[23][21] = new Calle(102);
+        
+        calles[24][23] = new Calle(47);
+        calles[24][25] = new Calle(92);
+        
+        calles[25][23] = new Calle(45);
+        calles[26][22] = new Calle(95);
+        //falta
+        calles[26][24] = new Calle(50);
+        calles[27][26] = new Calle(90);
+        calles[27][43] = new Calle(88);
+        
+        calles[28][15] = new Calle(97);
+        calles[28][30] = new Calle(60);
+        calles[29][15] = new Calle(60);
+        
+        calles[30][28] = new Calle(60);
+        calles[30][32] = new Calle(98);
+        calles[30][33] = new Calle(114);
+        calles[31][28] = new Calle(105);
+        calles[31][33] = new Calle(62);
+        
+        calles[32][30] = new Calle(98);
+        calles[32][50] = new Calle(78);
+        calles[32][51] = new Calle(74);
+        
+        calles[33][31] = new Calle(62);
+        calles[33][34] = new Calle(93);
+        calles[33][35] = new Calle(106);
+        
+        calles[34][51] = new Calle(70);
+        calles[34][33] = new Calle(93);
+        calles[34][53] = new Calle(26);
+        
+        calles[35][18] = new Calle(82);
+        calles[35][37] = new Calle(88);
+        
+        calles[36][35] = new Calle(100);
+        calles[36][53] = new Calle(89);
+        calles[36][38] = new Calle(114);
+        calles[36][56] = new Calle(77);
+        
+        calles[37][38] = new Calle(100);
+        calles[37][39] = new Calle(46);
+        
+        calles[38][40] = new Calle(46);
+        calles[38][36] = new Calle(89);
+        calles[38][57] = new Calle(105);
+        
+        calles[39][37] = new Calle(46);
+        calles[39][41] = new Calle(52);
+        
+        calles[40][38] = new Calle(46);
+        calles[40][39] = new Calle(91);
+        calles[40][42] = new Calle(30);
+        
+        calles[41][26] = new Calle(93);
+        calles[41][43] = new Calle(90);
+        
+        calles[42][40] = new Calle(30);
+        calles[42][44] = new Calle(113);
+        
+        calles[43][44] = new Calle(93);
+        calles[43][45] = new Calle(97);
+        
+        calles[44][42] = new Calle(113);
+        calles[44][46] = new Calle(88);
+        calles[44][59] = new Calle(99);
+        
+        calles[45][11] = new Calle(85);
+        
+        calles[46][45] = new Calle(95);
+        calles[46][44] = new Calle(88);
+        //rev
+        calles[46][48] = new Calle(40);
+        
+        calles[47][48] = new Calle(50);
+        calles[48][47] = new Calle(50);
+        //rev
+        calles[48][49] = new Calle(51);
+        
+        calles[49][11] = new Calle(100);
+        calles[49][77] = new Calle(218);
+        
+        calles[50][32] = new Calle(78);
+        calles[50][61] = new Calle(99);
+        calles[50][54] = new Calle(123);
+        
+        calles[51][32] = new Calle(74);
+        calles[51][52] = new Calle(42);
+        calles[51][34] = new Calle(70);
+        
+        calles[52][51] = new Calle(42);
+        
+        calles[53][34] = new Calle(26);
+        calles[53][36] = new Calle(77);
+        calles[53][55] = new Calle(144);
+        
+        calles[54][50] = new Calle(123);
+        calles[54][55] = new Calle(78);
+        calles[54][63] = new Calle(83);
+        
+        calles[55][53] = new Calle(114);
+        calles[55][54] = new Calle(78);
+        calles[55][56] = new Calle(70);
+        calles[55][64] = new Calle(76);
+        
+        calles[56][55] = new Calle(70);
+        calles[56][36] = new Calle(114);
+        calles[56][57] = new Calle(101);
+        calles[56][67] = new Calle(172);
+        
+        calles[57][56] = new Calle(101);
+        calles[57][38] = new Calle(105);
+        calles[57][68] = new Calle(128);
+        
+        calles[58][42] = new Calle(105);
+        calles[58][59] = new Calle(111);
+        
+        calles[59][74] = new Calle(94);
+        calles[59][60] = new Calle(82);
+        
+        calles[60][46] = new Calle(94);
+        
+        calles[61][50] = new Calle(99);
+        calles[61][62] = new Calle(71);
+        calles[61][65] = new Calle(156);
+        
+        calles[62][61] = new Calle(71);
+        
+        calles[63][54] = new Calle(83);
+        
+        calles[64][55] = new Calle(76);
+        
+        calles[65][61] = new Calle(156);
+        calles[65][70] = new Calle(559);
+        
+        calles[66][67] = new Calle(247);
+        
+        calles[67][66] = new Calle(247);
+        calles[67][56] = new Calle(2172);
+        calles[67][69] = new Calle(202);
+        
+        calles[68][57] = new Calle(128);
+        
+        calles[69][67] = new Calle(202);
+        calles[69][71] = new Calle(77);
+        calles[69][70] = new Calle(97);
+        
+        calles[70][65] = new Calle(559);
+        calles[70][69] = new Calle(97);
+        calles[70][78] = new Calle(106);
+        
+        calles[71][58] = new Calle(98);
+        //REV
+        calles[71][72] = new Calle(40);
+        calles[71][69] = new Calle(77);
+        
+        //REV
+        calles[72][71] = new Calle(40);
+        //FALTA
+        calles[72][73] = new Calle(20);
+        calles[72][74] = new Calle(59);
+        
+        calles[73][74] = new Calle(20);
+        
+        calles[74][72] = new Calle(59);
+        calles[74][75] = new Calle(79);
+        calles[74][78] = new Calle(180);
+        
+        calles[75][74] = new Calle(79);
+        calles[75][60] = new Calle(92);
+        
+        calles[76][75] = new Calle(29);
+        calles[76][77] = new Calle(94);
+        
+        calles[77][76] = new Calle(94);
+        calles[77][49] = new Calle(218);
+        calles[77][80] = new Calle(165);
+        
+        calles[78][70] = new Calle(106);
+        calles[78][74] = new Calle(180);
+        calles[78][79] = new Calle(121);
+        
+        calles[79][76] = new Calle(182);
+        calles[79][80] = new Calle(44);
+        
+        calles[80][77] = new Calle(165);
+        calles[80][79] = new Calle(44);
         
     }
 }
