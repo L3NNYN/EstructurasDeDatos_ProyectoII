@@ -140,6 +140,91 @@ public class MapaController extends Controller implements Initializable {
             }
         }
         
+        calles[0][1] = new Calle(145);
+        calles[0][2] = new Calle(287);
+        
+        calles[1][0] = new Calle(145);
+        calles[1][13] = new Calle(140);
+        calles[1][12] = new Calle(165);
+
+        
+        calles[2][3] = new Calle(103);
+        calles[2][0] = new Calle(287);
+        calles[2][4] = new Calle(71);
+        
+        calles[3][13] = new Calle(95);
+        calles[3][2] = new Calle(103);
+        calles[3][16] = new Calle(105);
+        calles[3][5] = new Calle(205);
+        
+        calles[4][2] = new Calle(71);
+        calles[4][5] = new Calle(122);
+        calles[4][6] = new Calle(146);
+        
+        calles[5][3] = new Calle(205);
+        calles[5][7] = new Calle(102);
+        calles[5][21] = new Calle(92);
+        
+        calles[6][4] = new Calle(146);
+        calles[6][8] = new Calle(107);
+
+        calles[7][5] = new Calle(102);
+        calles[7][6] = new Calle(43);
+        
+        calles[8][6] = new Calle(107);
+        calles[8][10] = new Calle(264);
+        
+        
+        calles[10][8] = new Calle(264);
+        calles[10][27] = new Calle(212);
+        calles[10][11] = new Calle(102);
+        
+        
+        calles[11][10] = new Calle(102);
+        calles[11][49] = new Calle(100);
+        
+        calles[12][1] = new Calle(165);
+        calles[12][13] = new Calle(134);
+        calles[12][14] = new Calle(55);
+        
+        calles[13][1] = new Calle(140);
+        calles[13][12] = new Calle(134);
+        calles[13][3] = new Calle(95);
+        
+        calles[14][12] = new Calle(55);
+        calles[14][15] = new Calle(146);
+        calles[14][16] = new Calle(75);
+        
+        calles[15][14] = new Calle(146);
+        calles[15][28] = new Calle(97);
+        calles[15][29] = new Calle(60);
+        
+        calles[28][15] = new Calle(97);
+        calles[29][15] = new Calle(60);
+        
+        calles[16][14] = new Calle(75);
+        calles[16][3] = new Calle(105);
+        
+        calles[17][16] = new Calle(148);
+        calles[17][19] = new Calle(65);
+     
+        calles[18][17] = new Calle(106);
+        calles[18][31] = new Calle(86);
+        
+        //falta peso
+        calles[19][20] = new Calle(0);
+        calles[19][21] = new Calle(63);
+        
+        
+        //falta peso
+        calles[20][19] = new Calle(0);
+        calles[20][18] = new Calle(38);
+        
+        
+        calles[21][19] = new Calle(63);
+        calles[21][22] = new Calle(94);
+        
+        
     }
 
     @FXML
