@@ -6,6 +6,7 @@
 package cr.ac.una.waze.controller;
 
 import cr.ac.una.waze.util.Calle;
+import cr.ac.una.waze.util.Floyd;
 import cr.ac.una.waze.util.Nodo;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
 /**
  * FXML Controller class
@@ -49,112 +51,113 @@ public class MapaController extends Controller implements Initializable {
     private Nodo finNod;
             
     private List<Nodo> nodos;
+    private List<Nodo> ruta1;
     
     private Calle[][] calles;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nodos = new ArrayList<>();
-        calles = new Calle[78][78];
+        calles = new Calle[81][81];
         click=0;
     }    
 
     @Override
     public void initialize() {
         iniList();
-        
+        IniMap();
     }
     
     private void iniList(){
-        nodos.add(new Nodo(0L,296,30));
-        nodos.add(new Nodo(1L,247,76));  
-        nodos.add(new Nodo(2L,361,155)); 
-        nodos.add(new Nodo(3L,312,177)); 
-        nodos.add(new Nodo(4L,384,191)); 
-        nodos.add(new Nodo(5L,361,248)); 
-        nodos.add(new Nodo(6L,422,250));
-        nodos.add(new Nodo(7L,412,270)); 
-        nodos.add(new Nodo(8L,452,304));
-        nodos.add(new Nodo(9L,439,332)); 
-        nodos.add(new Nodo(10L,519,418));
-        nodos.add(new Nodo(11L,493,459)); 
+        nodos.add(new Nodo(0,296,30));
+        nodos.add(new Nodo(1,247,76));  
+        nodos.add(new Nodo(2,361,155)); 
+        nodos.add(new Nodo(3,312,177)); 
+        nodos.add(new Nodo(4,384,191)); 
+        nodos.add(new Nodo(5,361,248)); 
+        nodos.add(new Nodo(6,422,250));
+        nodos.add(new Nodo(7,412,270)); 
+        nodos.add(new Nodo(8,452,304));
+        nodos.add(new Nodo(9,439,332)); 
+        nodos.add(new Nodo(10,519,418));
+        nodos.add(new Nodo(11,493,459)); 
         
-        nodos.add(new Nodo(12L,229,159));
-        nodos.add(new Nodo(13L,292,135));
-        nodos.add(new Nodo(14L,225,189));
-        nodos.add(new Nodo(15L,211,263));
-        nodos.add(new Nodo(16L,262,199));
-        nodos.add(new Nodo(17L,284,273));
-        nodos.add(new Nodo(18L,280,325));
-        nodos.add(new Nodo(19L,314,284));
-        nodos.add(new Nodo(20L,301,330));
+        nodos.add(new Nodo(12,229,159));
+        nodos.add(new Nodo(13,292,135));
+        nodos.add(new Nodo(14,225,189));
+        nodos.add(new Nodo(15,211,263));
+        nodos.add(new Nodo(16,262,199));
+        nodos.add(new Nodo(17,284,273));
+        nodos.add(new Nodo(18,280,325));
+        nodos.add(new Nodo(19,314,284));
+        nodos.add(new Nodo(20,301,330));
         //1.268  x
         //1.27 y
-        nodos.add(new Nodo(21L,345,296));
-        nodos.add(new Nodo(22L,328,340));
-        nodos.add(new Nodo(23L,395,316));
-        nodos.add(new Nodo(24L,388,337));
-        nodos.add(new Nodo(25L,417,323));
-        nodos.add(new Nodo(26L,379,361));
+        nodos.add(new Nodo(21,345,296));
+        nodos.add(new Nodo(22,328,340));
+        nodos.add(new Nodo(23,395,316));
+        nodos.add(new Nodo(24,388,337));
+        nodos.add(new Nodo(25,417,323));
+        nodos.add(new Nodo(26,379,361));
         
-        nodos.add(new Nodo(27L,425,378));
-        nodos.add(new Nodo(28L,185,305));
-        nodos.add(new Nodo(29L,246,272));
-        nodos.add(new Nodo(30L,166,326));
-        nodos.add(new Nodo(31L,235,318));
-        nodos.add(new Nodo(32L,131,362));
-        nodos.add(new Nodo(33L,221,347));
-        nodos.add(new Nodo(34L,201,392));
-        nodos.add(new Nodo(35L,272,368));
+        nodos.add(new Nodo(27,425,378));
+        nodos.add(new Nodo(28,185,305));
+        nodos.add(new Nodo(29,246,272));
+        nodos.add(new Nodo(30,166,326));
+        nodos.add(new Nodo(31,235,318));
+        nodos.add(new Nodo(32,131,362));
+        nodos.add(new Nodo(33,221,347));
+        nodos.add(new Nodo(34,201,392));
+        nodos.add(new Nodo(35,272,368));
         
-        nodos.add(new Nodo(36L,250,414));
-        nodos.add(new Nodo(37L,314,385));
-        nodos.add(new Nodo(38L,295,433));
-        nodos.add(new Nodo(39L,335,396));
-        nodos.add(new Nodo(40L,319,442));
-        nodos.add(new Nodo(41L,361,403));
-        nodos.add(new Nodo(42L,332,448));
+        nodos.add(new Nodo(36,250,414));
+        nodos.add(new Nodo(37,314,385));
+        nodos.add(new Nodo(38,295,433));
+        nodos.add(new Nodo(39,335,396));
+        nodos.add(new Nodo(40,319,442));
+        nodos.add(new Nodo(41,361,403));
+        nodos.add(new Nodo(42,332,448));
         
-        nodos.add(new Nodo(43L,406,425));
-        nodos.add(new Nodo(44L,388,471));
-        nodos.add(new Nodo(45L,451,443));
-        nodos.add(new Nodo(46L,431,488));
-        nodos.add(new Nodo(47L,473,479));
-        nodos.add(new Nodo(48L,462,500));
-        nodos.add(new Nodo(49L,476,507));
-        nodos.add(new Nodo(50L,106,393));
-        nodos.add(new Nodo(51L,167,377));
-        nodos.add(new Nodo(52L,153,402));
-        nodos.add(new Nodo(53L,214,399));
-        nodos.add(new Nodo(54L,152,435));
+        nodos.add(new Nodo(43,406,425));
+        nodos.add(new Nodo(44,388,471));
+        nodos.add(new Nodo(45,451,443));
+        nodos.add(new Nodo(46,431,488));
+        nodos.add(new Nodo(47,473,479));
+        nodos.add(new Nodo(48,462,500));
+        nodos.add(new Nodo(49,476,507));
+        nodos.add(new Nodo(50,106,393));
+        nodos.add(new Nodo(51,167,377));
+        nodos.add(new Nodo(52,153,402));
+        nodos.add(new Nodo(53,214,399));
+        nodos.add(new Nodo(54,152,435));
         
-        nodos.add(new Nodo(55L,190,453));
-        nodos.add(new Nodo(56L,225,468));
-        nodos.add(new Nodo(57L,276,488));
-        nodos.add(new Nodo(58L,315,500));
-        nodos.add(new Nodo(59L,368,518));
-        nodos.add(new Nodo(60L,412,535));
-        nodos.add(new Nodo(61L,74,429));
-        nodos.add(new Nodo(62L,108,452));
-        nodos.add(new Nodo(63L,135,473));
-        nodos.add(new Nodo(64L,175,492));
-        nodos.add(new Nodo(65L,22,494));
-        nodos.add(new Nodo(66L,77,491));
+        nodos.add(new Nodo(55,190,453));
+        nodos.add(new Nodo(56,225,468));
+        nodos.add(new Nodo(57,276,488));
+        nodos.add(new Nodo(58,315,500));
+        nodos.add(new Nodo(59,368,518));
+        nodos.add(new Nodo(60,412,535));
+        nodos.add(new Nodo(61,74,429));
+        nodos.add(new Nodo(62,108,452));
+        nodos.add(new Nodo(63,135,473));
+        nodos.add(new Nodo(64,175,492));
+        nodos.add(new Nodo(65,22,494));
+        nodos.add(new Nodo(66,77,491));
         
-        nodos.add(new Nodo(67L,190,547));
-        nodos.add(new Nodo(68L,254,557));
-        nodos.add(new Nodo(69L,290,588));
-        nodos.add(new Nodo(70L,275,634));
-        nodos.add(new Nodo(71L,302,548));
-        nodos.add(new Nodo(72L,333,559));
-        nodos.add(new Nodo(73L,338,547));
-        nodos.add(new Nodo(74L,353,564));
-        nodos.add(new Nodo(75L,394,577));
-        nodos.add(new Nodo(76L,390,593));
-        nodos.add(new Nodo(77L,432,613));
-        nodos.add(new Nodo(78L,323,661));
-        nodos.add(new Nodo(79L,383,684));
-        nodos.add(new Nodo(80L,406,694));
+        nodos.add(new Nodo(67,190,547));
+        nodos.add(new Nodo(68,254,557));
+        nodos.add(new Nodo(69,290,588));
+        nodos.add(new Nodo(70,275,634));
+        nodos.add(new Nodo(71,302,548));
+        nodos.add(new Nodo(72,333,559));
+        nodos.add(new Nodo(73,338,547));
+        nodos.add(new Nodo(74,353,564));
+        nodos.add(new Nodo(75,394,577));
+        nodos.add(new Nodo(76,390,593));
+        nodos.add(new Nodo(77,432,613));
+        nodos.add(new Nodo(78,323,661));
+        nodos.add(new Nodo(79,383,684));
+        nodos.add(new Nodo(80,406,694));
 
         
     }
@@ -241,12 +244,12 @@ public class MapaController extends Controller implements Initializable {
         calles[18][31] = new Calle(86);
         
         //falta peso
-        calles[19][20] = new Calle(0);
+        calles[19][20] = new Calle(10);
         calles[19][21] = new Calle(63);
         
         
         //falta peso
-        calles[20][19] = new Calle(0);
+        calles[20][19] = new Calle(10);
         calles[20][18] = new Calle(38);
         
         
@@ -460,7 +463,7 @@ public class MapaController extends Controller implements Initializable {
             for(Nodo n : nodos){
                 if( minimo(n,aux,x,y)){
                     aux=n;
-                    System.out.println("pasamos por " + n.getId());
+                    System.out.println("Pasamos por " + n.getId());
                 }
             }
             System.out.println("El nodo más cercano es el " + aux.getId());
@@ -468,18 +471,22 @@ public class MapaController extends Controller implements Initializable {
             Circle c = new Circle(x+5, y+5, 5);
             if(click==1){
                 c.setFill( Paint.valueOf("#3333ff"));
-                ini = new Nodo(90L,x,y);
+                ini = new Nodo(90,x,y);
                 iniNod=aux;
                 root.getChildren().add(c);
                 linea(ini, iniNod);
                 click=2;
             }else{
                 c.setFill( Paint.valueOf("#ff1a1a"));
-                fin = new Nodo(91L,x,y);
+                fin = new Nodo(91,x,y);
                 finNod=aux;
                 root.getChildren().add(c);
                 linea(fin,finNod);
                 click=0;
+                
+                ruta1 = new Floyd().getCamino(iniNod, finNod, calles, nodos);
+                mostrarRuta();
+                
             }
         }
     }
@@ -517,11 +524,8 @@ public class MapaController extends Controller implements Initializable {
 
     private void linea(Nodo a, Nodo b){
         Line l = new Line(a.getX()+5d,a.getY()+5d,b.getX()+5d,b.getY()+5d);
-        l.setFill(Paint.valueOf("#ff3300"));
-        l.setOpacity(0.7);
-//        l.scaleXProperty().setValue(2);
-//        l.scaleYProperty().setValue(4);
         root.getChildren().add(l);
+        l.getStyleClass().add("connect");
     }
     
     private void Limpiar(){
@@ -532,6 +536,11 @@ public class MapaController extends Controller implements Initializable {
         }
     }
     
+    private void mostrarRuta(){
+        for(int i=1; i<ruta1.size();i++){
+            linea(ruta1.get(i-1), ruta1.get(i));
+        }
+    }
     
     private void mostrarNodos(){
         nodos.stream().forEach(n -> {

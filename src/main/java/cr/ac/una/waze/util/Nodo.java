@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Nodo {
     
-    private Long id;
+    private int id;
     
     private double x;
     private double y;
@@ -22,17 +22,17 @@ public class Nodo {
     public Nodo() {
     }
 
-    public Nodo(Long id,double x, double y) {
+    public Nodo(int id,double x, double y) {
         this.id = id;
         this.x = x;
         this.y = y;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -16,3 +16,9 @@ and open the template in the editor.
 .mapa{
     -fx-image: url(../resources/mapa.png);
 }
+
+.connect{
+    -fx-fill: #ff3366;
+    -fx-stroke-size: 3px;
+    -fx-opacity: 0.7;
+}
