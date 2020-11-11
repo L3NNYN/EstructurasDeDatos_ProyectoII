@@ -11,13 +11,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 /**
  * FXML Controller class
@@ -27,23 +30,39 @@ import javafx.scene.shape.Circle;
 public class MapaController extends Controller implements Initializable {
 
 
-    private List<Nodo> nodos;
-    
-    private Calle[][] calles;
+   
     @FXML
     private ImageView imvMapa;
     @FXML
     private AnchorPane root;
+    @FXML
+    private Button btnPAB;
+    @FXML
+    private Button btnLimpiar;
+    
+    private int click;
+    
+    private Nodo ini;
+    private Nodo fin;
+    
+    private Nodo iniNod;
+    private Nodo finNod;
+            
+    private List<Nodo> nodos;
+    
+    private Calle[][] calles;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nodos = new ArrayList<>();
         calles = new Calle[78][78];
+        click=0;
     }    
 
     @Override
     public void initialize() {
         iniList();
+        
     }
     
     private void iniList(){
@@ -71,10 +90,10 @@ public class MapaController extends Controller implements Initializable {
         nodos.add(new Nodo(20L,301,330));
         //1.268  x
         //1.27 y
-        nodos.add(new Nodo(21L,345,233));
+        nodos.add(new Nodo(21L,345,296));
         nodos.add(new Nodo(22L,328,340));
-        nodos.add(new Nodo(23L,395,400));
-        nodos.add(new Nodo(24L,388,314));
+        nodos.add(new Nodo(23L,395,316));
+        nodos.add(new Nodo(24L,388,337));
         nodos.add(new Nodo(25L,417,323));
         nodos.add(new Nodo(26L,379,361));
         
@@ -132,7 +151,7 @@ public class MapaController extends Controller implements Initializable {
         nodos.add(new Nodo(74L,353,564));
         nodos.add(new Nodo(75L,394,577));
         nodos.add(new Nodo(76L,390,593));
-        nodos.add(new Nodo(77L,432,513));
+        nodos.add(new Nodo(77L,432,613));
         nodos.add(new Nodo(78L,323,661));
         nodos.add(new Nodo(79L,383,684));
         nodos.add(new Nodo(80L,406,694));
@@ -428,28 +447,109 @@ public class MapaController extends Controller implements Initializable {
 
     @FXML
     private void onMouseClickedMapa(MouseEvent event) {
-        Circle c = new Circle(event.getX()+5, event.getY()+5, 5, Paint.valueOf("#000000"));
-        root.getChildren().add(c);
         verPuntoCer(event.getX(), event.getY());
         System.out.println("x: " + event.getX()+" y:" + event.getY());
     }
     
     private void verPuntoCer(Double x, Double y){
         Nodo aux = null;
-        Double auxX=0d,auxY=0d;
-        Double auxX2=999d,auxY2=999d;
-        for(Nodo n : nodos){
-            auxX = x - n.getX();
-            auxY = y - n.getY();
-            if(auxX < 0){ auxX=auxX*-1;}
-            if(auxY < 0){auxY=auxY*-1;}
-            if(auxX<auxX2 && auxY<auxY2){
-                auxX2=auxX;
-                auxY2=auxY;
-                aux=n;
-                System.out.println("pasamos por " + n.getId());
+        if(click == 1 || click == 2){
+            for(Nodo n : nodos){
+                if( minimo(n,aux,x,y)){
+                    aux=n;
+                    System.out.println("pasamos por " + n.getId());
+                }
+            }
+            System.out.println("El nodo más cercano es el " + aux.getId());
+            
+            Circle c = new Circle(x+5, y+5, 5);
+            if(click==1){
+                c.setFill( Paint.valueOf("#3333ff"));
+                ini = new Nodo(90L,x,y);
+                iniNod=aux;
+                root.getChildren().add(c);
+                linea(ini, iniNod);
+                click=2;
+            }else{
+                c.setFill( Paint.valueOf("#ff1a1a"));
+                fin = new Nodo(91L,x,y);
+                finNod=aux;
+                root.getChildren().add(c);
+                linea(fin,finNod);
+                click=0;
             }
         }
-        System.out.println("El nodo más cercano es el " + aux.getId());
+    }
+    
+    private Boolean minimo(Nodo n, Nodo nObj, Double x, Double y){
+        Boolean result=false;
+        if(nObj==null){ return true; }
+        Double x1=n.getX()-x,x2 =nObj.getX()-x,y1=n.getY()-y,y2=nObj.getY()-y;
+        
+        if(x1 < 0){ x1*=-1; }
+        if(y1 < 0){ y1*=-1; }
+        if(x2 < 0){ x2*=-1; }
+        if(y2 < 0){ y2*=-1; }
+        System.out.println("Comparando nodo " + n.getId() + " con "+ nObj.getId());
+        System.out.println("Comparando x: " + x1 + " con x:"+ x2);
+        System.out.println("Comparando y: " + y1 + " con y:"+ y2);
+        
+        // falta arreglar esta mamada, pero se disminuyo la probabilidad de error
+        if( x1 <= x2 ){
+            if( y2<15 && y1 <= y2 +30D){
+                result=true; 
+            }else if(y1 <= y2){
+                result=true;
+            }
+        } 
+        else if( y1 <= y2 ){
+            if(x2<15 && x1 <= x2+30D){
+                result=true; 
+            }else if(x1 <= x2){
+                result=true;
+            }
+        }
+        return result;
+    }
+
+    private void linea(Nodo a, Nodo b){
+        Line l = new Line(a.getX()+5d,a.getY()+5d,b.getX()+5d,b.getY()+5d);
+        l.setFill(Paint.valueOf("#ff3300"));
+        l.setOpacity(0.7);
+//        l.scaleXProperty().setValue(2);
+//        l.scaleYProperty().setValue(4);
+        root.getChildren().add(l);
+    }
+    
+    private void Limpiar(){
+        if(root.getChildren().size()>1){
+            for(int i=root.getChildren().size()-1; i>0 ;i--){
+                root.getChildren().remove(i);
+            }
+        }
+    }
+    
+    
+    private void mostrarNodos(){
+        nodos.stream().forEach(n -> {
+            Circle c = new Circle(n.getX()+5, n.getY()+5, 5, Paint.valueOf("#ff1a1a"));
+            root.getChildren().add(c);
+        });
+    }
+    
+    @FXML
+    private void onActionBtnPAB(ActionEvent event) {
+        Limpiar();
+        click=1;
+    }
+    
+    @FXML
+    private void onActionBtnLimpiar(ActionEvent event) {
+        Limpiar();
+    }
+
+    @FXML
+    private void onActionBtnMNodos(ActionEvent event) {
+        mostrarNodos();
     }
 }
