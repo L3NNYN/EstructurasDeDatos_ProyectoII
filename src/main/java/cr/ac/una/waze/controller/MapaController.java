@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -477,7 +479,7 @@ public class MapaController extends Controller implements Initializable {
                 linea(ini, iniNod);
                 click=2;
             }else{
-                c.setFill( Paint.valueOf("#ff1a1a"));
+                c.setFill( Paint.valueOf("#1aff1a"));
                 fin = new Nodo(91,x,y);
                 finNod=aux;
                 root.getChildren().add(c);
@@ -524,8 +526,11 @@ public class MapaController extends Controller implements Initializable {
 
     private void linea(Nodo a, Nodo b){
         Line l = new Line(a.getX()+5d,a.getY()+5d,b.getX()+5d,b.getY()+5d);
+        l.setStrokeWidth(8);
+        l.setOpacity(0.5);
+        l.setStroke(Paint.valueOf("#ffcc00"));
         root.getChildren().add(l);
-        l.getStyleClass().add("connect");
+        
     }
     
     private void Limpiar(){
@@ -537,11 +542,25 @@ public class MapaController extends Controller implements Initializable {
     }
     
     private void mostrarRuta(){
-        for(int i=1; i<ruta1.size();i++){
-            linea(ruta1.get(i-1), ruta1.get(i));
+        ImageView car = new ImageView();
+        car.setFitHeight(15);
+        car.setFitWidth(15);
+        car.getStyleClass().add("car");
+        
+        SequentialTransition st = new SequentialTransition();  // esto tiene que ser global para detenerlo cuando se juanee un aaccidente
+        st.setRate(5);
+        for(int i=ruta1.size()-2; i>=0;i--){
+            linea(ruta1.get(i+1), ruta1.get(i));
+            TranslateTransition tt = getMovimiento(ruta1.get(i+1),ruta1.get(i));
+            tt.setNode(car);
+            st.getChildren().add(tt);
         }
+        root.getChildren().add(car);
+        car.setX(-2);
+        car.setY(-2);
+        st.play();
     }
-    
+
     private void mostrarNodos(){
         nodos.stream().forEach(n -> {
             Circle c = new Circle(n.getX()+5, n.getY()+5, 5, Paint.valueOf("#ff1a1a"));
@@ -563,5 +582,17 @@ public class MapaController extends Controller implements Initializable {
     @FXML
     private void onActionBtnMNodos(ActionEvent event) {
         mostrarNodos();
+    }
+    
+    
+    
+    private TranslateTransition getMovimiento(Nodo a, Nodo b){
+        TranslateTransition tt = new TranslateTransition();
+        tt.setDuration(Duration.seconds(20));
+        tt.setFromX(a.getX());
+        tt.setFromY(a.getY());
+        tt.setToX(b.getX());
+        tt.setToY(b.getY());
+        return tt;
     }
 }
