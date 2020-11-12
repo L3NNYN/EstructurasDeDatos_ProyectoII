@@ -22,3 +22,39 @@ and open the template in the editor.
     -fx-stroke-size: 3px;
     -fx-opacity: 0.7;
 }
+
+.menu-principal-panes
+{
+    -fx-background: #ccffff;
+    -fx-border-width: 30px;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 30px;
+    -fx-border-insets: -15px;
+}
+.menu-principal-button{
+    -fx-border-width: 5px;
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+    -fx-background-color: #99ff99;
+    -fx-background-radius: 11px;
+}
+.menu-principal-button:hover{
+    -fx-border-width: 7px;
+    -fx-border-color: #ffffcc;
+    -fx-border-radius: 5px;
+    -fx-background-color: #66ff66;
+    -fx-background-radius: 7px;
+}
+.menu-principal-button:pressed{
+    -fx-border-color: #e7e8dc;
+    -fx-background-color: #98d498;
+    -fx-border-width: 5px,10px,5px,10px;
+}
+.menu-principal-icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("CarritoComida_Icon.png");
+    -fx-background-size: stretch;
+}
+.menu-principal-icon:hover{
+    -fx-background-color: radial-gradient(focus-angle 250deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
+}
