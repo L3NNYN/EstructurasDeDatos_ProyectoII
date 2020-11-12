@@ -535,8 +535,8 @@ public class MapaController extends Controller implements Initializable {
     private void linea(Nodo a, Nodo b){
         Line l = new Line(a.getX()+5d,a.getY()+5d,b.getX()+5d,b.getY()+5d);
         l.setStrokeWidth(8);
-        l.setOpacity(0.5);
-        l.setStroke(Paint.valueOf("#ffcc00"));
+        l.setOpacity(0.4);
+        l.setStroke(Paint.valueOf("#bf00ff"));
         root.getChildren().add(l);
         
     }
