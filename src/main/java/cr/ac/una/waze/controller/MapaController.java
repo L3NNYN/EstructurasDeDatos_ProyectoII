@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -56,6 +58,12 @@ public class MapaController extends Controller implements Initializable {
     private List<Nodo> ruta1;
     
     private Calle[][] calles;
+    @FXML
+    private RadioButton rbtnF;
+    @FXML
+    private ToggleGroup algoritmo;
+    @FXML
+    private RadioButton rbtnD;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -594,5 +602,15 @@ public class MapaController extends Controller implements Initializable {
         tt.setToX(b.getX());
         tt.setToY(b.getY());
         return tt;
+    }
+
+    @FXML
+    private void onActionRbtnF(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void onActionRbtnD(ActionEvent event) {
+        
     }
 }
