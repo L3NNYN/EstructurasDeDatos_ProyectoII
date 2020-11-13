@@ -16,7 +16,7 @@
             <Button mnemonicParsing="false" onAction="#dividir" styleClass="menu-principal-button" text="dividir x" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="txt" />
+                  <TextField fx:id="txt" styleClass="menu-principal-textfield" />
                   <Label fx:id="lbl" text="Label" />
                </children>
             </HBox>
