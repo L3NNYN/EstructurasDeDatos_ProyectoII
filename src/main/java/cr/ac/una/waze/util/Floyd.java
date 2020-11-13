@@ -59,7 +59,7 @@ public class Floyd {
                             
                             if(sum < peso[i][j]){
                                 if(i==22 && j==0){
-                                    System.out.println("");
+                                    System.out.println(sum);
                                 }
                                 peso[i][j] = sum;
                                 recorrido[i][j] = c;
