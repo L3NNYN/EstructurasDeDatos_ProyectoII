@@ -17,19 +17,9 @@ and open the template in the editor.
     -fx-image: url(../resources/car-icon.png);
 }
 
-.connect{
-    -fx-fill: #ff3366;
-    -fx-stroke-size: 8px;
-    -fx-opacity: 0.7;
-}
-
 .menu-principal-panes
 {
     -fx-background-color: #66ccff;
-    -fx-border-width: 15px;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 30px;
-    -fx-border-insets: -13px;
 }
 .menu-principal-button{
     -fx-font: 20px Tahoma;

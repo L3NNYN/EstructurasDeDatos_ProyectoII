@@ -46,7 +46,7 @@ public class Floyd {
         }
     }
     
-    public List<Nodo> getCamino(Nodo a, Nodo b, Calle[][] ca,List<Nodo> n){
+    public Respuesta getCamino(Nodo a, Nodo b, Calle[][] ca,List<Nodo> n){
         List<Nodo> camino = new ArrayList<>();
         int sum=0;
         pasarPesos(ca);
@@ -54,7 +54,7 @@ public class Floyd {
             for(int i=0; i<=80; i++){
                 if(i!=c){
                     for(int j=0; j<=80; j++){
-                        if(j!=c && peso[i][c]!=Integer.MAX_VALUE && peso[c][j]!=Integer.MAX_VALUE){ //j!=c 
+                        if(j!=c && peso[i][c]!=0  && peso[i][c]!=Integer.MAX_VALUE && peso[c][j]!=Integer.MAX_VALUE){ //j!=c 
                             sum = peso[i][c] + peso[c][j];
                             
                             if(sum < peso[i][j]){
@@ -88,7 +88,7 @@ public class Floyd {
             }
 	}
         
-        return camino;
+        return new Respuesta(camino, peso[a.getId()][b.getId()]);
     }
     
 }

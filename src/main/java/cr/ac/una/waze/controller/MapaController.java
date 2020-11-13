@@ -8,6 +8,7 @@ package cr.ac.una.waze.controller;
 import cr.ac.una.waze.util.Calle;
 import cr.ac.una.waze.util.Floyd;
 import cr.ac.una.waze.util.Nodo;
+import cr.ac.una.waze.util.Respuesta;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +36,6 @@ import javafx.util.Duration;
  */
 public class MapaController extends Controller implements Initializable {
 
-
-   
     @FXML
     private ImageView imvMapa;
     @FXML
@@ -45,6 +44,14 @@ public class MapaController extends Controller implements Initializable {
     private Button btnPAB;
     @FXML
     private Button btnLimpiar;
+    @FXML
+    private RadioButton rbtnF;
+    @FXML
+    private ToggleGroup algoritmo;
+    @FXML
+    private RadioButton rbtnD;
+    
+    SequentialTransition st;
     
     private int click;
     
@@ -53,17 +60,23 @@ public class MapaController extends Controller implements Initializable {
     
     private Nodo iniNod;
     private Nodo finNod;
+    
+    private Nodo nodAct;
+    private Nodo nodSig;
             
     private List<Nodo> nodos;
-    private List<Nodo> ruta1;
+    
+    private List<Nodo> rutaIni;
+    private List<Nodo> rutaCurso;
     
     private Calle[][] calles;
-    @FXML
-    private RadioButton rbtnF;
-    @FXML
-    private ToggleGroup algoritmo;
-    @FXML
-    private RadioButton rbtnD;
+
+    int distanciaIni;
+    int distanciaReal;
+    
+    int cont;
+    
+    ImageView car;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -471,12 +484,8 @@ public class MapaController extends Controller implements Initializable {
         Nodo aux = null;
         if(click == 1 || click == 2){
             for(Nodo n : nodos){
-                if( minimo(n,aux,x,y)){
-                    aux=n;
-                    System.out.println("Pasamos por " + n.getId());
-                }
+                if( minimo(n,aux,x,y)){ aux=n; }
             }
-            System.out.println("El nodo más cercano es el " + aux.getId());
             
             Circle c = new Circle(x+5, y+5, 5);
             if(click==1){
@@ -494,7 +503,9 @@ public class MapaController extends Controller implements Initializable {
                 linea(fin,finNod);
                 click=0;
                 
-                ruta1 = new Floyd().getCamino(iniNod, finNod, calles, nodos);
+                Respuesta respuesta = new Floyd().getCamino(iniNod, finNod, calles, nodos);
+                rutaIni = respuesta.getRuta();
+                distanciaIni = respuesta.getDistancia();
                 mostrarRuta();
                 
             }
@@ -502,43 +513,22 @@ public class MapaController extends Controller implements Initializable {
     }
     
     private Boolean minimo(Nodo n, Nodo nObj, Double x, Double y){
-        Boolean result=false;
         if(nObj==null){ return true; }
-        Double x1=n.getX()-x,x2 =nObj.getX()-x,y1=n.getY()-y,y2=nObj.getY()-y;
+        Double x1=n.getX(),x2 =nObj.getX(),y1=n.getY(),y2=nObj.getY();
         
-        if(x1 < 0){ x1*=-1; }
-        if(y1 < 0){ y1*=-1; }
-        if(x2 < 0){ x2*=-1; }
-        if(y2 < 0){ y2*=-1; }
-        System.out.println("Comparando nodo " + n.getId() + " con "+ nObj.getId());
-        System.out.println("Comparando x: " + x1 + " con x:"+ x2);
-        System.out.println("Comparando y: " + y1 + " con y:"+ y2);
+        Double dis = Math.sqrt((x1-x)*(x1-x) + (y1-y)*(y1-y));
+        Double dis2 = Math.sqrt((x2-x)*(x2-x) + (y2-y)*(y2-y));
         
-        // falta arreglar esta mamada, pero se disminuyo la probabilidad de error
-        if( x1 <= x2 ){
-            if( y2<15 && y1 <= y2 +30D){
-                result=true; 
-            }else if(y1 <= y2){
-                result=true;
-            }
-        } 
-        else if( y1 <= y2 ){
-            if(x2<15 && x1 <= x2+30D){
-                result=true; 
-            }else if(x1 <= x2){
-                result=true;
-            }
-        }
-        return result;
+        if(dis<dis2){  return true; }
+        return false;
     }
 
     private void linea(Nodo a, Nodo b){
-        Line l = new Line(a.getX()+5d,a.getY()+5d,b.getX()+5d,b.getY()+5d);
+        Line l = new Line(a.getX()+5,a.getY()+5,b.getX()+5,b.getY()+5);
         l.setStrokeWidth(8);
         l.setOpacity(0.4);
         l.setStroke(Paint.valueOf("#bf00ff"));
         root.getChildren().add(l);
-        
     }
     
     private void Limpiar(){
@@ -550,20 +540,42 @@ public class MapaController extends Controller implements Initializable {
     }
     
     private void mostrarRuta(){
-        ImageView car = new ImageView();
+        car = new ImageView();
         car.setFitHeight(15);
         car.setFitWidth(15);
         car.getStyleClass().add("car");
         
-        SequentialTransition st = new SequentialTransition();  // esto tiene que ser global para detenerlo cuando se juanee un aaccidente
+        st = new SequentialTransition(); 
         st.setRate(5);
-        for(int i=ruta1.size()-2; i>=0;i--){
-            linea(ruta1.get(i+1), ruta1.get(i));
-            TranslateTransition tt = getMovimiento(ruta1.get(i+1),ruta1.get(i));
+        
+        TranslateTransition tti = getMovimiento(ini,rutaIni.get(rutaIni.size()-1));
+        tti.setNode(car);
+        tti.play();
+        
+        for(int i=rutaIni.size()-2; i>=0;i--){
+            linea(rutaIni.get(i+1), rutaIni.get(i));
+            TranslateTransition tt = getMovimiento(rutaIni.get(i+1),rutaIni.get(i));
             tt.setNode(car);
             st.getChildren().add(tt);
         }
+        
+        TranslateTransition ttf = getMovimiento(rutaIni.get(0),fin);
+        ttf.setNode(car);
+        st.getChildren().add(ttf);
+        
         root.getChildren().add(car);
+        car.setX(-2);
+        car.setY(-2);
+        st.play();
+    }
+    
+    private void calcMejorR(){
+        TranslateTransition tt = getMovimiento(rutaIni.get(cont+1),rutaIni.get(cont));
+        tt.setNode(car);
+        
+        TranslateTransition ttf = getMovimiento(rutaIni.get(0),fin);
+        ttf.setNode(car);
+        
         car.setX(-2);
         car.setY(-2);
         st.play();
@@ -606,11 +618,11 @@ public class MapaController extends Controller implements Initializable {
 
     @FXML
     private void onActionRbtnF(ActionEvent event) {
-        
+        st.pause();
     }
 
     @FXML
     private void onActionRbtnD(ActionEvent event) {
-        
+        st.play();
     }
 }
