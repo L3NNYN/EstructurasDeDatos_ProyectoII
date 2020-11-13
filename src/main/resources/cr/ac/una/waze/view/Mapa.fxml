@@ -10,33 +10,41 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="930.0" styleClass="base-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
    <children>
-      <HBox layoutX="503.0" layoutY="213.0" prefHeight="720.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="503.0" layoutY="213.0" minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="679.0" spacing="10.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <children>
-            <ImageView fx:id="imvMapa" fitHeight="711.0" fitWidth="596.0" onMouseClicked="#onMouseClickedMapa" pickOnBounds="true" preserveRatio="true" styleClass="mapa" />
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" styleClass="contenedor-mapa">
+               <children>
+                  <ImageView fx:id="imvMapa" fitHeight="682.0" fitWidth="596.0" onMouseClicked="#onMouseClickedMapa" pickOnBounds="true" preserveRatio="true" styleClass="mapa" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="base-contenedor-botones" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="67.0" prefWidth="137.0" text="Controles" />
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="311.0" styleClass="base-label" text="Controles" />
                      </children>
                   </HBox>
-                  <Button fx:id="btnPAB" mnemonicParsing="false" onAction="#onActionBtnPAB" styleClass="menu-principal-button" text="Seleccionar punto A y B" />
-                  <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#onActionBtnLimpiar" styleClass="menu-principal-button" text="Limpiar" />
-                  <Button mnemonicParsing="false" onAction="#onActionBtnMNodos" styleClass="menu-principal-button" text="MostrarNodos" />
-                  <Button mnemonicParsing="false" styleClass="menu-principal-button" text="Button" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnPAB" mnemonicParsing="false" onAction="#onActionBtnPAB" styleClass="base-button" text="Seleccionar punto A y B" />
+                        <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#onActionBtnLimpiar" styleClass="base-button" text="Limpiar" />
+                        <Button mnemonicParsing="false" onAction="#onActionBtnMNodos" styleClass="base-button" text="MostrarNodos" />
+                        <Button mnemonicParsing="false" styleClass="base-button" text="Button" />
+                     </children>
+                  </VBox>
                   <HBox alignment="CENTER" prefHeight="53.0" prefWidth="319.0" spacing="50.0">
                      <children>
-                        <RadioButton fx:id="rbtnF" mnemonicParsing="false" onAction="#onActionRbtnF" selected="true" text="Floyd">
+                        <RadioButton fx:id="rbtnF" mnemonicParsing="false" onAction="#onActionRbtnF" selected="true" styleClass="base-ratiobutton" text="Floyd">
                            <toggleGroup>
                               <ToggleGroup fx:id="algoritmo" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="rbtnD" mnemonicParsing="false" onAction="#onActionRbtnD" text="Dijkstra" toggleGroup="$algoritmo" />
+                        <RadioButton fx:id="rbtnD" mnemonicParsing="false" onAction="#onActionRbtnD" styleClass="base-ratiobutton" text="Dijkstra" toggleGroup="$algoritmo" />
                      </children>
                   </HBox>
                </children>
