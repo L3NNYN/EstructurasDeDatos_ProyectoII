@@ -1,3 +1,9 @@
+cr\ac\una\waze\controller\MapaController.class
+cr\ac\una\waze\controller\Controller.class
+cr\ac\una\waze\util\Nodo.class
 cr\ac\una\waze\App.class
-cr\ac\una\waze\PrimaryController.class
-cr\ac\una\waze\SecondaryController.class
+cr\ac\una\waze\controller\MenuPrincipalController.class
+cr\ac\una\waze\util\Respuesta.class
+cr\ac\una\waze\util\Calle.class
+cr\ac\una\waze\util\FlowController.class
+cr\ac\una\waze\util\Floyd.class

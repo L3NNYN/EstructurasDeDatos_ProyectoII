@@ -7,14 +7,10 @@ and open the template in the editor.
     Created on : 10 nov 2020, 12:36:30
     Author     : crist
 */
-
-
-
-
-
-
 .mapa{
     -fx-image: url(../resources/mapa.png);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-radius: 10px;
 }
 
 .car{
@@ -29,24 +25,26 @@ and open the template in the editor.
 
 .menu-principal-panes
 {
-    -fx-background: #ccffff;
-    -fx-border-width: 30px;
+    -fx-background-color: #66ccff;
+    -fx-border-width: 15px;
     -fx-border-color: #ffffff;
     -fx-border-radius: 30px;
-    -fx-border-insets: -15px;
+    -fx-border-insets: -13px;
 }
 .menu-principal-button{
+    -fx-font: 20px Tahoma;
     -fx-border-width: 5px;
-    -fx-border-color: white;
+    -fx-border-color: linear-gradient(#ff6666 0%, #ff7676 25%, #ff7676 85%, #ff6666  100%);
     -fx-border-radius: 10px;
-    -fx-background-color: #99ff99;
-    -fx-background-radius: 11px;
+    -fx-background-color: linear-gradient(#33ff33 0%, #66ff66 25%, #66ff66 85%, #33ff33 100%);
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 .menu-principal-button:hover{
     -fx-border-width: 7px;
-    -fx-border-color: #ffffcc;
+    -fx-border-color: #ff6666;
     -fx-border-radius: 5px;
-    -fx-background-color: #66ff66;
+    -fx-background-color: linear-gradient(#4cca4c 0%, #66ff66 25%, #66ff66 50%, #4cca4c 100%);
     -fx-background-radius: 7px;
 }
 .menu-principal-button:pressed{
@@ -54,11 +52,34 @@ and open the template in the editor.
     -fx-background-color: #98d498;
     -fx-border-width: 5px,10px,5px,10px;
 }
+.menu-principal-button:focused{
+    -fx-effect:dropshadow(gaussian, rgba(0, 0, 0, 0.5), 25, 0, 0, 0);
+}
+.menu-principal-textfield{
+    -fx-font: 15px Tahoma;
+    -fx-background-color: rgba(255,255,255,0.75);
+    -fx-background-radius: 25px;
+    -fx-border-width: 2;
+    -fx-border-color: rgb(67,67,67);
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);
+}
+.menu-principal-textfield:hover{
+    -fx-background-color: rgba(255,255,255,0.85);
+    -fx-border-color: linear-gradient(rgba(251, 229, 112, 0.75) 20%, rgb(255, 255, 255) 20%, rgb(67,67,67));
+}
+.menu-principal-textfield:focused{
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-border-color: linear-gradient(rgba(251, 229, 112, 0.75) 60%, rgb(255, 255, 255) 20%, rgb(67,67,67));
+}
 .menu-principal-icon{
     -fx-background-color: transparent;
     -fx-background-image: url("CarritoComida_Icon.png");
     -fx-background-size: stretch;
 }
 .menu-principal-icon:hover{
-    -fx-background-color: radial-gradient(focus-angle 250deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
+    -fx-background-color: radial-gradient(focus-angle 270deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
+}
+.menu-principal-icon:focused{
+    -fx-background-color: radial-gradient(focus-angle 270deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
 }
