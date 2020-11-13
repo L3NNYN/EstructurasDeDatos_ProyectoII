@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MenuPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="base-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MenuPrincipalController">
    <children>
       <VBox alignment="CENTER" layoutX="121.0" layoutY="32.0" prefHeight="200.0" prefWidth="100.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="67.0" styleClass="menu-principal-icon" />
-            <Button fx:id="btnMapa" mnemonicParsing="false" onAction="#onActionBtnMapa" styleClass="menu-principal-button" text="Ir al mapa" />
-            <Button mnemonicParsing="false" onAction="#dividir" styleClass="menu-principal-button" text="dividir x" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="67.0" styleClass="base-icon" />
+            <Button fx:id="btnMapa" mnemonicParsing="false" onAction="#onActionBtnMapa" styleClass="base-button" text="Ir al mapa" />
+            <Button mnemonicParsing="false" onAction="#dividir" styleClass="base-button" text="dividir x" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <TextField fx:id="txt" styleClass="menu-principal-textfield" />
-                  <Label fx:id="lbl" text="Label" />
+                  <TextField fx:id="txt" styleClass="base-textfield" />
+                  <Label fx:id="lbl" styleClass="base-label" text="Label" />
                </children>
             </HBox>
          </children>

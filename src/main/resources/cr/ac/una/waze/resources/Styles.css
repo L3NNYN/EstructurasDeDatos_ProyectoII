@@ -9,8 +9,13 @@ and open the template in the editor.
 */
 .mapa{
     -fx-image: url(../resources/mapa.png);
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-radius: 10px;
+}
+.contenedor-mapa{
+    -fx-border-width: 10px;
+    -fx-border-color: linear-gradient(to top, black 15%, transparent 100%)
+        linear-gradient(to right, black 15%, transparent 100%)
+        linear-gradient(to bottom, black 15%, transparent 100%)
+        linear-gradient(to left, black 15%, transparent 100%);
 }
 
 .car{
@@ -23,15 +28,15 @@ and open the template in the editor.
     -fx-opacity: 0.7;
 }
 
-.menu-principal-panes
+.base-panes
 {
-    -fx-background-color: #66ccff;
+    -fx-background-color: rgb(150, 255, 253);
     -fx-border-width: 15px;
     -fx-border-color: #ffffff;
     -fx-border-radius: 30px;
     -fx-border-insets: -13px;
 }
-.menu-principal-button{
+.base-button{
     -fx-font: 20px Tahoma;
     -fx-border-width: 5px;
     -fx-border-color: linear-gradient(#ff6666 0%, #ff7676 25%, #ff7676 85%, #ff6666  100%);
@@ -40,22 +45,22 @@ and open the template in the editor.
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
-.menu-principal-button:hover{
+.base-button:hover{
     -fx-border-width: 7px;
     -fx-border-color: #ff6666;
     -fx-border-radius: 5px;
     -fx-background-color: linear-gradient(#4cca4c 0%, #66ff66 25%, #66ff66 50%, #4cca4c 100%);
     -fx-background-radius: 7px;
 }
-.menu-principal-button:pressed{
+.base-button:pressed{
     -fx-border-color: #e7e8dc;
     -fx-background-color: #98d498;
     -fx-border-width: 5px,10px,5px,10px;
 }
-.menu-principal-button:focused{
+.base-button:focused{
     -fx-effect:dropshadow(gaussian, rgba(0, 0, 0, 0.5), 25, 0, 0, 0);
 }
-.menu-principal-textfield{
+.base-textfield{
     -fx-font: 15px Tahoma;
     -fx-background-color: rgba(255,255,255,0.75);
     -fx-background-radius: 25px;
@@ -64,22 +69,45 @@ and open the template in the editor.
     -fx-border-radius: 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);
 }
-.menu-principal-textfield:hover{
+.base-textfield:hover{
     -fx-background-color: rgba(255,255,255,0.85);
     -fx-border-color: linear-gradient(rgba(251, 229, 112, 0.75) 20%, rgb(255, 255, 255) 20%, rgb(67,67,67));
 }
-.menu-principal-textfield:focused{
+.base-textfield:focused{
     -fx-background-color: rgba(255,255,255,0.95);
     -fx-border-color: linear-gradient(rgba(251, 229, 112, 0.75) 60%, rgb(255, 255, 255) 20%, rgb(67,67,67));
 }
-.menu-principal-icon{
+.base-icon{
     -fx-background-color: transparent;
     -fx-background-image: url("CarritoComida_Icon.png");
     -fx-background-size: stretch;
 }
-.menu-principal-icon:hover{
+.base-icon:hover{
     -fx-background-color: radial-gradient(focus-angle 270deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
 }
-.menu-principal-icon:focused{
+.base-icon:focused{
     -fx-background-color: radial-gradient(focus-angle 270deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
+}
+.base-label{
+    -fx-font: 18px Tahoma;
+    -fx-effect: dropshadow(two-pass-box, rgba(0, 0, 0, 0.4), 20, 0, 0, 0);
+}
+.base-ratiobutton{
+    -fx-font: 18px Tahoma;
+}
+.base-ratiobutton .radio{
+    -fx-border-width: 2px;   
+    -fx-padding: 4px;
+    -fx-border-color: radial-gradient(focus-angle 270deg, focus-distance 1%, center 50% 30%, radius 100%, black, black, white);
+    -fx-background-color: rgb(255, 150, 150);
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 2);
+}
+.base-ratiobutton .dot{
+    -fx-padding: 8px;
+}
+.base-contenedor-botones{
+    -fx-background-color: rgb(61, 217, 160);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, -5, 3);
 }
