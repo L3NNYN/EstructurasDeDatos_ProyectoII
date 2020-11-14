@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="720.0" maxWidth="930.0" minHeight="720.0" minWidth="930.0" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="720.0" maxWidth="930.0" minHeight="720.0" minWidth="930.0" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
    <children>
       <HBox layoutX="503.0" layoutY="213.0" prefHeight="720.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,13 +22,22 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="67.0" prefWidth="137.0" text="Controles" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="137.0" text="Controles" />
                      </children>
                   </HBox>
-                  <Button fx:id="btnPAB" mnemonicParsing="false" onAction="#onActionBtnPAB" styleClass="menu-principal-button" text="Seleccionar punto A y B" />
-                  <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#onActionBtnLimpiar" styleClass="menu-principal-button" text="Limpiar" />
-                  <Button mnemonicParsing="false" onAction="#onActionBtnMNodos" styleClass="menu-principal-button" text="MostrarNodos" />
-                  <Button mnemonicParsing="false" styleClass="menu-principal-button" text="Button" />
+                  <Button fx:id="btnPAB" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionBtnPAB" text="Seleccionar punto A y B">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-ruta" />
+                     </graphic></Button>
+                  <Button fx:id="btnLimpiar" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionBtnLimpiar" prefHeight="40.0" prefWidth="177.0" text="Limpiar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-limpiar" />
+                     </graphic></Button>
+                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionBtnMNodos" prefHeight="40.0" prefWidth="178.0" text="Mostrar nodos">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-mostrar" />
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" text="Button" />
                   <HBox alignment="CENTER" prefHeight="53.0" prefWidth="319.0" spacing="50.0">
                      <children>
                         <RadioButton fx:id="rbtnF" mnemonicParsing="false" onAction="#onActionRbtnF" selected="true" text="Floyd">

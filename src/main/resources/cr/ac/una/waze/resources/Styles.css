@@ -7,6 +7,16 @@ and open the template in the editor.
     Created on : 10 nov 2020, 12:36:30
     Author     : crist
 */
+@font-face {
+    font-family: Aller;
+    src: url('fonts/Aller_Rg.ttf');
+}
+
+@font-face {
+    font-family: Poppins ExtraLight;
+    src: url('fonts/Poppins-ExtraLight.otf');
+}
+
 .mapa{
     -fx-image: url(../resources/mapa.png);
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
@@ -17,9 +27,12 @@ and open the template in the editor.
     -fx-image: url(../resources/car-icon.png);
 }
 
+
 .menu-principal-panes
 {
-    -fx-background-color: #66ccff;
+    /*-fx-background-color: #66ccff;*/
+    -fx-background-color:linear-gradient(to right top, #001c5b, #004e90, #0081b9, #00b6d4, #12ebe2);
+    /*-fx-background-color: radial-gradient(radius 180%, #4CBEFB, derive(#4CBEFB, -60%), derive(#4CBEFB, 30%));*/
 }
 .menu-principal-button{
     -fx-font: 20px Tahoma;
@@ -36,6 +49,7 @@ and open the template in the editor.
     -fx-border-radius: 5px;
     -fx-background-color: linear-gradient(#4cca4c 0%, #66ff66 25%, #66ff66 50%, #4cca4c 100%);
     -fx-background-radius: 7px;
+    
 }
 .menu-principal-button:pressed{
     -fx-border-color: #e7e8dc;
@@ -72,4 +86,53 @@ and open the template in the editor.
 }
 .menu-principal-icon:focused{
     -fx-background-color: radial-gradient(focus-angle 270deg , focus-distance 74% , center 50% 50% , radius 55% , #e9ff67, transparent);
+}
+
+RadioButton{
+    /*-fx-font-family: 'Aller';*/
+    -fx-font-size: 12px;
+    
+}
+
+Label{
+    -fx-font-family: 'Aller';
+    -fx-font-size: 20px;
+    -fx-font-color: white;
+}
+
+Button{
+    -fx-font-family: 'Aller';
+    -fx-font-size: 12px;
+}
+
+.button {
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 30px;
+    -fx-background-color: white;
+}
+
+.button:hover {
+    -fx-background-color: #c7c7c7
+}
+
+/*imagenes************************/
+.img-ruta {
+    -fx-image: url('ruta.png');
+}
+
+.img-limpiar {
+    -fx-image: url('limpiar.png');
+}
+
+.img-mostrar{
+    -fx-image: url('mostrar.png');
+}
+
+.img-waze{
+    -fx-image: url('mapa2.png');
+}
+
+.img-titulo{
+    -fx-image: url('waze.png');
 }
