@@ -81,7 +81,7 @@ public class MapaController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nodos = new ArrayList<>();
-        calles = new Calle[81][81];
+        calles = new Calle[82][82];
         click=0;
     }    
 
@@ -182,38 +182,39 @@ public class MapaController extends Controller implements Initializable {
         nodos.add(new Nodo(79,383,684));
         nodos.add(new Nodo(80,406,694));
 
+        nodos.add(new Nodo(81,510,418));
         
     }
     
     private void IniMap(){
-        for(int i=0;i<=80;i++){
-            for(int j=0;j<=80;j++){
+        for(int i=0;i<82;i++){
+            for(int j=0;j<82;j++){
                 calles[i][j] = null;
             }
         }
         
-        calles[0][1] = new Calle(145);
-        calles[0][2] = new Calle(287);
+        calles[0][1] = new Calle(145);//
+        calles[0][2] = new Calle(287);//
         
-        calles[1][0] = new Calle(145);
+        calles[1][0] = new Calle(145);//
         calles[1][13] = new Calle(140);
         calles[1][12] = new Calle(165);
 
         
         calles[2][3] = new Calle(103);
-        calles[2][0] = new Calle(287);
+        calles[2][0] = new Calle(287);//
         calles[2][4] = new Calle(71);
         
         calles[3][13] = new Calle(95);
         calles[3][2] = new Calle(103);
         calles[3][16] = new Calle(105);
-        calles[3][5] = new Calle(205);
+        calles[3][5] = new Calle(205);//
         
         calles[4][2] = new Calle(71);
         calles[4][5] = new Calle(122);
         calles[4][6] = new Calle(146);
         
-        calles[5][3] = new Calle(205);
+        calles[5][3] = new Calle(205);//
         calles[5][7] = new Calle(102);
         calles[5][21] = new Calle(92);
         
@@ -231,11 +232,12 @@ public class MapaController extends Controller implements Initializable {
         calles[9][27] = new Calle(97);
         
         calles[10][8] = new Calle(264);
-        calles[10][27] = new Calle(212);
-        calles[10][11] = new Calle(102);
+        calles[10][81] = new Calle(25);
         
-        
-        calles[11][10] = new Calle(102);
+        calles[81][11] = new Calle(102);
+        calles[81][27] = new Calle(180);
+        //agregar 81 a list
+        calles[11][81] = new Calle(89);
         calles[11][49] = new Calle(100);
         
         calles[12][1] = new Calle(165);
@@ -249,13 +251,10 @@ public class MapaController extends Controller implements Initializable {
         calles[14][12] = new Calle(55);
         calles[14][15] = new Calle(146);
         calles[14][16] = new Calle(75);
-        
+        //---
         calles[15][14] = new Calle(146);
         calles[15][28] = new Calle(97);
         calles[15][29] = new Calle(60);
-        
-        calles[28][15] = new Calle(97);
-        calles[29][15] = new Calle(60);
         
         calles[16][14] = new Calle(75);
         calles[16][3] = new Calle(105);
@@ -265,14 +264,11 @@ public class MapaController extends Controller implements Initializable {
      
         calles[18][17] = new Calle(106);
         calles[18][31] = new Calle(86);
-        
-        //falta peso
-        calles[19][20] = new Calle(10);
+
+        calles[19][20] = new Calle(92);
         calles[19][21] = new Calle(63);
-        
-        
-        //falta peso
-        calles[20][19] = new Calle(10);
+
+        calles[20][19] = new Calle(92);
         calles[20][18] = new Calle(38);
         
         
@@ -280,27 +276,31 @@ public class MapaController extends Controller implements Initializable {
         calles[21][22] = new Calle(94);
         
         calles[22][37] = new Calle(89);
+        calles[22][20] = new Calle(58);
         
         calles[23][7] = new Calle(95);
         calles[23][21] = new Calle(102);
-        
+        //
         calles[24][23] = new Calle(47);
         calles[24][25] = new Calle(92);
         
         calles[25][23] = new Calle(45);
+        
         calles[26][22] = new Calle(95);
-        //falta
         calles[26][24] = new Calle(50);
+        
         calles[27][26] = new Calle(90);
         calles[27][43] = new Calle(88);
-        
+        //
         calles[28][15] = new Calle(97);
         calles[28][30] = new Calle(60);
-        calles[29][15] = new Calle(60);
         
+        calles[29][15] = new Calle(75);
+        //
         calles[30][28] = new Calle(60);
         calles[30][32] = new Calle(98);
         calles[30][33] = new Calle(114);
+        
         calles[31][28] = new Calle(105);
         calles[31][33] = new Calle(62);
         
@@ -311,14 +311,14 @@ public class MapaController extends Controller implements Initializable {
         calles[33][31] = new Calle(62);
         calles[33][34] = new Calle(93);
         calles[33][35] = new Calle(106);
-        
+        //
         calles[34][51] = new Calle(70);
         calles[34][33] = new Calle(93);
         calles[34][53] = new Calle(26);
-        
+        //
         calles[35][18] = new Calle(82);
         calles[35][37] = new Calle(88);
-        
+        //
         calles[36][35] = new Calle(100);
         calles[36][53] = new Calle(89);
         calles[36][38] = new Calle(114);
@@ -326,7 +326,7 @@ public class MapaController extends Controller implements Initializable {
         
         calles[37][38] = new Calle(100);
         calles[37][39] = new Calle(46);
-        
+        //
         calles[38][40] = new Calle(46);
         calles[38][36] = new Calle(89);
         calles[38][57] = new Calle(105);
@@ -340,32 +340,31 @@ public class MapaController extends Controller implements Initializable {
         
         calles[41][26] = new Calle(93);
         calles[41][43] = new Calle(90);
-        
+        //
         calles[42][40] = new Calle(30);
         calles[42][44] = new Calle(113);
         
         calles[43][44] = new Calle(93);
         calles[43][45] = new Calle(97);
-        
+        //
         calles[44][42] = new Calle(113);
         calles[44][46] = new Calle(88);
         calles[44][59] = new Calle(99);
         
         calles[45][11] = new Calle(85);
-        
+        //
         calles[46][45] = new Calle(95);
         calles[46][44] = new Calle(88);
-        //rev
-        calles[46][48] = new Calle(40);
+        calles[46][48] = new Calle(63);
         
-        calles[47][48] = new Calle(50);
-        calles[48][47] = new Calle(50);
-        //rev
-        calles[48][49] = new Calle(51);
+        calles[47][48] = new Calle(53);
         
+        calles[48][47] = new Calle(53);
+        calles[48][49] = new Calle(26);
+        //
         calles[49][11] = new Calle(100);
         calles[49][77] = new Calle(218);
-        
+        //
         calles[50][32] = new Calle(78);
         calles[50][61] = new Calle(99);
         calles[50][54] = new Calle(123);
@@ -373,13 +372,13 @@ public class MapaController extends Controller implements Initializable {
         calles[51][32] = new Calle(74);
         calles[51][52] = new Calle(42);
         calles[51][34] = new Calle(70);
-        
+        //
         calles[52][51] = new Calle(42);
         
         calles[53][34] = new Calle(26);
         calles[53][36] = new Calle(77);
         calles[53][55] = new Calle(144);
-        
+        //
         calles[54][50] = new Calle(123);
         calles[54][55] = new Calle(78);
         calles[54][63] = new Calle(83);
@@ -405,7 +404,7 @@ public class MapaController extends Controller implements Initializable {
         calles[59][60] = new Calle(82);
         
         calles[60][46] = new Calle(94);
-        
+        //
         calles[61][50] = new Calle(99);
         calles[61][62] = new Calle(71);
         calles[61][65] = new Calle(156);
@@ -418,7 +417,7 @@ public class MapaController extends Controller implements Initializable {
         
         calles[65][61] = new Calle(156);
         calles[65][70] = new Calle(559);
-        
+        //
         calles[66][67] = new Calle(247);
         
         calles[67][66] = new Calle(247);
@@ -434,24 +433,21 @@ public class MapaController extends Controller implements Initializable {
         calles[70][65] = new Calle(559);
         calles[70][69] = new Calle(97);
         calles[70][78] = new Calle(106);
-        
+        //
         calles[71][58] = new Calle(98);
-        //REV
-        calles[71][72] = new Calle(40);
+        calles[71][72] = new Calle(65);
         calles[71][69] = new Calle(77);
         
-        //REV
-        calles[72][71] = new Calle(40);
-        //FALTA
-        calles[72][73] = new Calle(20);
-        calles[72][74] = new Calle(59);
+        calles[72][71] = new Calle(65);
+        calles[72][73] = new Calle(22);
+        calles[72][74] = new Calle(37);
         
-        calles[73][74] = new Calle(20);
+        calles[73][72] = new Calle(22);
         
         calles[74][72] = new Calle(59);
         calles[74][75] = new Calle(79);
         calles[74][78] = new Calle(180);
-        
+        //
         calles[75][74] = new Calle(79);
         calles[75][60] = new Calle(92);
         

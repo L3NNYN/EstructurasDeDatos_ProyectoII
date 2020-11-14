@@ -19,13 +19,13 @@ public class Floyd {
 
     
     public Floyd() {
-       this.peso = new int[81][81];
-       this.recorrido = new int[81][81];
+       this.peso = new int[82][82];
+       this.recorrido = new int[82][82];
     }
     
     private void pasarPesos(Calle[][] m){
-        for(int i=0;i<=80;i++){
-            for(int j=0;j<=80;j++){
+        for(int i=0;i<82;i++){
+            for(int j=0;j<82;j++){
                 if(m[i][j]!=null){
                     peso[i][j] = m[i][j].getPeso();
                 } else if(i==j){
@@ -35,8 +35,8 @@ public class Floyd {
                 }
             }
         }
-        for(int i=0;i<=80;i++){
-            for(int j=0;j<=80;j++){
+        for(int i=0;i<82;i++){
+            for(int j=0;j<82;j++){
                 if(i==j){
                     recorrido[j][i] = 0;
                 }else{
@@ -50,25 +50,38 @@ public class Floyd {
         List<Nodo> camino = new ArrayList<>();
         int sum=0;
         pasarPesos(ca);
-	for(int c=0; c<=80; c++){
-            for(int i=0; i<=80; i++){
+	for(int c=0; c<82; c++){
+            for(int i=0; i<82; i++){
                 if(i!=c){
-                    for(int j=0; j<=80; j++){
-                        if(j!=c && peso[i][c]!=0  && peso[i][c]!=Integer.MAX_VALUE && peso[c][j]!=Integer.MAX_VALUE){ //j!=c 
+                    for(int j=0; j<82; j++){
+                        if(j!=c && peso[i][c]!=Integer.MAX_VALUE && peso[c][j]!=Integer.MAX_VALUE){ //j!=c 
                             sum = peso[i][c] + peso[c][j];
-                            
-                            if(sum < peso[i][j]){
-                                if(i==22 && j==0){
-                                    System.out.println(sum);
-                                }
+                            if(sum <= peso[i][j]){
                                 peso[i][j] = sum;
-                                recorrido[i][j] = c;
+                                recorrido[i][j] = recorrido[c][j];
                             }
                         }
                     }
                 }
             }
 	}
+
+//        for(int c=81; c>=0; c--){
+//            for(int i=81; i>=0; i--){
+//                if(i!=c){
+//                    for(int j=0; j<82; j++){
+//                        if(j!=c && peso[i][c]!=Integer.MAX_VALUE && peso[c][j]!=Integer.MAX_VALUE){ //j!=c 
+//                            sum = peso[i][c] + peso[c][j];
+//                            if(sum < peso[i][j]){
+//                                peso[i][j] = sum;
+//                                recorrido[i][j] = c;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//	}
+                
         Boolean eva=true;
 	int aux2 = b.getId();
 	int aux=0;
