@@ -6,6 +6,7 @@
 package cr.ac.una.waze.controller;
 
 import cr.ac.una.waze.util.Calle;
+import cr.ac.una.waze.util.Dijkstra;
 import cr.ac.una.waze.util.Floyd;
 import cr.ac.una.waze.util.Nodo;
 import cr.ac.una.waze.util.Respuesta;
@@ -19,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
@@ -74,21 +76,39 @@ public class MapaController extends Controller implements Initializable {
     int distanciaIni;
     int distanciaReal;
     
+    int algorit;
+    
+    int regla;
+    
     int cont;
     
     ImageView car;
+    @FXML
+    private Label lblDisPre;
+    @FXML
+    private Label lblDisRea;
+    @FXML
+    private Label lblCosPre;
+    @FXML
+    private Label lblCosRea;
+    
+    TranslateTransition tt;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nodos = new ArrayList<>();
         calles = new Calle[82][82];
         click=0;
+        regla=0;
+        distanciaReal=0;
     }    
 
     @Override
     public void initialize() {
         iniList();
         IniMap();
+        algorit=1;
+        distanciaReal=0;
     }
     
     private void iniList(){
@@ -489,22 +509,34 @@ public class MapaController extends Controller implements Initializable {
                 ini = new Nodo(90,x,y);
                 iniNod=aux;
                 root.getChildren().add(c);
-                linea(ini, iniNod);
+                linea(ini, iniNod,1);
                 click=2;
             }else{
                 c.setFill( Paint.valueOf("#1aff1a"));
                 fin = new Nodo(91,x,y);
                 finNod=aux;
                 root.getChildren().add(c);
-                linea(fin,finNod);
+                linea(fin,finNod,1);
                 click=0;
                 
-                Respuesta respuesta = new Floyd().getCamino(iniNod, finNod, calles, nodos);
+                Respuesta respuesta;
+                if(algorit==1){
+                    respuesta = new Floyd().getCamino(iniNod, finNod, calles, nodos);
+                }else{
+                    respuesta = new Dijkstra().getCamino(calles,iniNod, finNod, nodos);
+                }
+                
                 rutaIni = respuesta.getRuta();
                 distanciaIni = respuesta.getDistancia();
+                lblDisPre.setText(distanciaIni + "m");
+                lblCosPre.setText(Math.round(distanciaIni*1.2 )+ " Colones");
+                nodAct = iniNod;
                 mostrarRuta();
                 
             }
+        }else if(regla!=0){
+            System.out.println(""+regla);
+            regla=0;
         }
     }
     
@@ -519,11 +551,56 @@ public class MapaController extends Controller implements Initializable {
         return false;
     }
 
-    private void linea(Nodo a, Nodo b){
+    private void linea(Nodo a, Nodo b, int col){
         Line l = new Line(a.getX()+5,a.getY()+5,b.getX()+5,b.getY()+5);
         l.setStrokeWidth(8);
         l.setOpacity(0.4);
-        l.setStroke(Paint.valueOf("#bf00ff"));
+        l.setOnMouseClicked((event) -> {
+            if(regla==1){
+                if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]!=null){
+                    calles[a.getId()][b.getId()].setEstado("M");
+                    calles[b.getId()][a.getId()].setEstado("M");
+                }else if(calles[a.getId()][b.getId()]==null && calles[b.getId()][a.getId()]!=null){
+                    calles[b.getId()][a.getId()].setEstado("M");
+                }else if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]==null){
+                    calles[a.getId()][b.getId()].setEstado("M");
+                }
+                l.setStroke(Paint.valueOf("#0099ff")); 
+            }else if(regla==2){
+                if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]!=null){
+                    calles[a.getId()][b.getId()].setEstado("A");
+                    calles[b.getId()][a.getId()].setEstado("A");
+                }else if(calles[a.getId()][b.getId()]==null && calles[b.getId()][a.getId()]!=null){
+                    calles[b.getId()][a.getId()].setEstado("A");
+                }else if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]==null){
+                    calles[a.getId()][b.getId()].setEstado("A");
+                }
+                l.setStroke(Paint.valueOf("#ff0000")); 
+            }else if(regla==3){
+                if(calles[a.getId()][b.getId()].getTrafico()<3){
+                    calles[a.getId()][b.getId()].setTrafico(calles[a.getId()][b.getId()].getTrafico()+1);
+                }
+            }else{
+                if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]!=null){
+                    calles[a.getId()][b.getId()].setEstado("N");
+                    calles[b.getId()][a.getId()].setEstado("N");
+                }else if(calles[a.getId()][b.getId()]==null && calles[b.getId()][a.getId()]!=null){
+                    calles[b.getId()][a.getId()].setEstado("N");
+                }else if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]==null){
+                    calles[a.getId()][b.getId()].setEstado("N");
+                }
+                if(col==1){
+                    l.setStroke(Paint.valueOf("#bf00ff")); 
+                }else{
+                    l.setStroke(Paint.valueOf("#1aff1a"));
+                }
+            }
+        });
+        if(col==1){
+            l.setStroke(Paint.valueOf("#bf00ff")); 
+        }else{
+            l.setStroke(Paint.valueOf("#1aff1a"));
+        }
         root.getChildren().add(l);
     }
     
@@ -533,6 +610,14 @@ public class MapaController extends Controller implements Initializable {
                 root.getChildren().remove(i);
             }
         }
+        if(tt!=null){
+            tt.stop();
+            tt=null;
+        }
+        regla=0;
+        distanciaReal=0;
+        lblCosPre.setText("");
+        lblDisPre.setText("");
     }
     
     private void mostrarRuta(){
@@ -541,40 +626,49 @@ public class MapaController extends Controller implements Initializable {
         car.setFitWidth(15);
         car.getStyleClass().add("car");
         
-        st = new SequentialTransition(); 
-        st.setRate(5);
-        
         TranslateTransition tti = getMovimiento(ini,rutaIni.get(rutaIni.size()-1));
+        
         tti.setNode(car);
         tti.play();
         
         for(int i=rutaIni.size()-2; i>=0;i--){
-            linea(rutaIni.get(i+1), rutaIni.get(i));
-            TranslateTransition tt = getMovimiento(rutaIni.get(i+1),rutaIni.get(i));
-            tt.setNode(car);
-            st.getChildren().add(tt);
+            linea(rutaIni.get(i+1), rutaIni.get(i),1);
         }
-        
-        TranslateTransition ttf = getMovimiento(rutaIni.get(0),fin);
-        ttf.setNode(car);
-        st.getChildren().add(ttf);
-        
         root.getChildren().add(car);
         car.setX(-2);
         car.setY(-2);
-        st.play();
+        
+        calcMejorR();
     }
     
     private void calcMejorR(){
-        TranslateTransition tt = getMovimiento(rutaIni.get(cont+1),rutaIni.get(cont));
+        Respuesta respuesta;
+        if(algorit==1){
+            respuesta = new Floyd().getCamino(nodAct, finNod, calles, nodos);
+        }else{
+            respuesta = new Dijkstra().getCamino(calles,nodAct, finNod, nodos);
+        }
+        rutaCurso = respuesta.getRuta();
+        if(rutaCurso.size()>1){
+            distanciaReal= distanciaReal + calles[rutaCurso.get(rutaCurso.size()-1).getId()][rutaCurso.get(rutaCurso.size()-2).getId()].getPeso();
+            lblDisRea.setText(""+  distanciaReal);
+        }
+        if(rutaCurso.size()>1){ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),rutaCurso.get(rutaCurso.size()-2));
+        car.setRotate(getAngulo(rutaCurso.get(rutaCurso.size()-2)));
+        }else{ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),fin); }
+        
         tt.setNode(car);
-        
-        TranslateTransition ttf = getMovimiento(rutaIni.get(0),fin);
-        ttf.setNode(car);
-        
-        car.setX(-2);
-        car.setY(-2);
-        st.play();
+        tt.setRate(5);
+        tt.setOnFinished((event) -> {
+            if(rutaCurso.size()>1){
+                nodAct = rutaCurso.get(rutaCurso.size()-2);
+                linea(rutaCurso.get(rutaCurso.size()-1), rutaCurso.get(rutaCurso.size()-2),2);
+                calcMejorR();
+            }else{
+                lblCosRea.setText(""+Math.round(distanciaReal*1.2));
+            }
+        });
+        tt.play();
     }
 
     private void mostrarNodos(){
@@ -600,8 +694,6 @@ public class MapaController extends Controller implements Initializable {
         mostrarNodos();
     }
     
-    
-    
     private TranslateTransition getMovimiento(Nodo a, Nodo b){
         TranslateTransition tt = new TranslateTransition();
         tt.setDuration(Duration.seconds(20));
@@ -611,14 +703,35 @@ public class MapaController extends Controller implements Initializable {
         tt.setToY(b.getY());
         return tt;
     }
+    
+    private double getAngulo(Nodo objetivo){
+        Double angle = Math.toDegrees(Math.atan2(objetivo.getY() - nodAct.getY(), objetivo.getX() - nodAct.getX()));
+        angle += 180;
+        return angle;
+    }
 
     @FXML
     private void onActionRbtnF(ActionEvent event) {
-        st.pause();
+        algorit = 1;
     }
 
     @FXML
     private void onActionRbtnD(ActionEvent event) {
-        st.play();
+        algorit = 2;
+    }
+
+    @FXML
+    private void onActionBtnMantemiento(ActionEvent event) {
+        regla=1;
+    }
+
+    @FXML
+    private void onActionbtnAccidente(ActionEvent event) {
+        regla=2;
+    }
+
+    @FXML
+    private void onActionBtnTrafico(ActionEvent event) {
+        regla=3;
     }
 }

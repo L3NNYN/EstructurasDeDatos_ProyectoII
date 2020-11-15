@@ -5,6 +5,8 @@
  */
 package cr.ac.una.waze.util;
 
+import java.util.Random;
+
 /**
  *
  * @author crist
@@ -21,12 +23,12 @@ public class Calle {
     
     public Calle(int peso) {
         this.peso = peso;
-        this.estado = "";
-        this.trafico = 0;
+        this.estado = "N";
+        this.trafico = new Random().nextInt(3)+1;
     }
 
     public int getPeso() {
-        return peso;
+        return peso*trafico;
     }
 
     public void setPeso(int peso) {

@@ -26,7 +26,7 @@ public class Floyd {
     private void pasarPesos(Calle[][] m){
         for(int i=0;i<82;i++){
             for(int j=0;j<82;j++){
-                if(m[i][j]!=null){
+                if(m[i][j]!=null && m[i][j].getEstado().equals("N")){
                     peso[i][j] = m[i][j].getPeso();
                 } else if(i==j){
                     peso[i][j]=0;
@@ -65,23 +65,7 @@ public class Floyd {
                 }
             }
 	}
-
-//        for(int c=81; c>=0; c--){
-//            for(int i=81; i>=0; i--){
-//                if(i!=c){
-//                    for(int j=0; j<82; j++){
-//                        if(j!=c && peso[i][c]!=Integer.MAX_VALUE && peso[c][j]!=Integer.MAX_VALUE){ //j!=c 
-//                            sum = peso[i][c] + peso[c][j];
-//                            if(sum < peso[i][j]){
-//                                peso[i][j] = sum;
-//                                recorrido[i][j] = c;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//	}
-                
+        
         Boolean eva=true;
 	int aux2 = b.getId();
 	int aux=0;
