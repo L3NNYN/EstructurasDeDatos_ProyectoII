@@ -12,6 +12,8 @@ import cr.ac.una.waze.util.Floyd;
 import cr.ac.una.waze.util.Nodo;
 import cr.ac.una.waze.util.Respuesta;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +33,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 /**
  * FXML Controller class
@@ -82,6 +85,8 @@ public class MapaController extends Controller implements Initializable {
     int regla;
     
     int cont;
+    
+    LocalTime localTime;
     
     ImageView car;
     @FXML
@@ -639,6 +644,7 @@ public class MapaController extends Controller implements Initializable {
         car.setX(-2);
         car.setY(-2);
         
+        localTime = LocalTime.now();
         calcMejorR();
     }
     
@@ -666,7 +672,9 @@ public class MapaController extends Controller implements Initializable {
                 linea(rutaCurso.get(rutaCurso.size()-1), rutaCurso.get(rutaCurso.size()-2),2);
                 calcMejorR();
             }else{
-                lblCosRea.setText(""+Math.round(distanciaReal*1.2));
+                LocalTime lt = LocalTime.now();
+                Long tiempo = SECONDS.between(localTime, lt);
+                lblCosRea.setText("" + Math.round((distanciaReal*1.2) + (tiempo*0.7)));
             }
         });
         tt.play();
