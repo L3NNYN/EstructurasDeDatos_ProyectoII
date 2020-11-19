@@ -623,8 +623,8 @@ public class MapaController extends Controller implements Initializable {
     
     private void mostrarRuta(){
         car = new ImageView();
-        car.setFitHeight(15);
-        car.setFitWidth(15);
+        car.setFitHeight(22);
+        car.setFitWidth(22);
         car.getStyleClass().add(FlowController.getCarro());
         
         TranslateTransition tti = getMovimiento(ini,rutaIni.get(rutaIni.size()-1));
@@ -636,8 +636,8 @@ public class MapaController extends Controller implements Initializable {
             linea(rutaIni.get(i+1), rutaIni.get(i),1);
         }
         root.getChildren().add(car);
-        car.setX(-2);
-        car.setY(-2);
+        car.setX(-6);
+        car.setY(-6);
         
         calcMejorR();
     }
