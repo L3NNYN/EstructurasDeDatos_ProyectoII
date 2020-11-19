@@ -51,7 +51,7 @@ public class Dijkstra {
             for (int v = 0; v < 82; v++) {
                 if (!nodosVisit[v] && grafo[u][v]!=null && peso[u] != Integer.MAX_VALUE 
                     && peso[u] + grafo[u][v].getPeso() < peso[v] && grafo[u][v].getEstado().equals("N")) {
-                    peso[v] = peso[u] + grafo[u][v].getPeso(); 
+                    peso[v] = peso[u] + grafo[u][v].getPeso();
                     ruta[v] = u; 
                 }
             }

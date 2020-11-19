@@ -43,7 +43,7 @@ public class MenuPrincipalController extends Controller implements Initializable
 
     @FXML
     private void onActionBtnMapa(ActionEvent event) {
-        FlowController.getInstance().goViewInWindow("Mapa");
+        FlowController.getInstance().goViewInWindow("AutoSeleccion");
         ((Stage)btnMapa.getScene().getWindow()).close();
     }
     

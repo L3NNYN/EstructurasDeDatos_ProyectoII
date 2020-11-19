@@ -30,7 +30,7 @@ public class FlowController {
     private static ResourceBundle idioma;
     private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
     private static Controller controller;
-
+    private static String carro;
     private FlowController() {
     }
 
@@ -192,6 +192,14 @@ public class FlowController {
 
     public static void setIdioma(ResourceBundle idioma) {
         FlowController.idioma = idioma;
+    }
+
+    public static String getCarro() {
+        return carro;
+    }
+
+    public static void setCarro(String carro) {
+        FlowController.carro = carro;
     }
     
     public void initialize() {

@@ -7,6 +7,7 @@ package cr.ac.una.waze.controller;
 
 import cr.ac.una.waze.util.Calle;
 import cr.ac.una.waze.util.Dijkstra;
+import cr.ac.una.waze.util.FlowController;
 import cr.ac.una.waze.util.Floyd;
 import cr.ac.una.waze.util.Nodo;
 import cr.ac.una.waze.util.Respuesta;
@@ -624,7 +625,7 @@ public class MapaController extends Controller implements Initializable {
         car = new ImageView();
         car.setFitHeight(15);
         car.setFitWidth(15);
-        car.getStyleClass().add("car");
+        car.getStyleClass().add(FlowController.getCarro());
         
         TranslateTransition tti = getMovimiento(ini,rutaIni.get(rutaIni.size()-1));
         

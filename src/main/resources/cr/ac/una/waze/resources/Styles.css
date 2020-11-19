@@ -26,7 +26,15 @@ and open the template in the editor.
 .car{
     -fx-image: url(../resources/car-icon.png);
 }
-
+.car2{
+    -fx-image: url(../resources/car-icon2.png);
+}
+.car3{
+    -fx-image: url(../resources/car-icon3.png);
+}
+.car4{
+    -fx-image: url(../resources/car-icon4.png);
+}
 
 .menu-principal-panes
 {
