@@ -34,6 +34,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import static java.time.temporal.ChronoUnit.SECONDS;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 
 /**
@@ -539,12 +540,20 @@ public class MapaController extends Controller implements Initializable {
                     respuesta = new Dijkstra().getCamino(calles,iniNod, finNod, nodos);
                 }
                 
-                rutaIni = respuesta.getRuta();
-                distanciaIni = respuesta.getDistancia();
-                lblDisPre.setText(distanciaIni + "m");
-                lblCosPre.setText(Math.round(distanciaIni*1.2 )+ " Colones");
-                nodAct = iniNod;
-                mostrarRuta();
+                if(respuesta.getDistancia()!=-1){
+                    rutaIni = respuesta.getRuta();
+                    distanciaIni = respuesta.getDistancia();
+                    lblDisPre.setText(distanciaIni + "m");
+                    lblCosPre.setText(Math.round(distanciaIni*1.2 )+ " Colones");
+                    nodAct = iniNod;
+                    mostrarRuta();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sin Camino");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Debido a un mantenimiento o accidente es imposible llegar al destino");
+                    alert.show();
+                }
                 
             }
         }else if(regla!=0){
@@ -666,30 +675,38 @@ public class MapaController extends Controller implements Initializable {
         }else{
             respuesta = new Dijkstra().getCamino(calles,nodAct, finNod, nodos);
         }
-        rutaCurso = respuesta.getRuta();
-        if(rutaCurso.size()>1){
-            distanciaReal= distanciaReal + calles[rutaCurso.get(rutaCurso.size()-1).getId()][rutaCurso.get(rutaCurso.size()-2).getId()].getPeso();
-            lblDisRea.setText(""+  distanciaReal);
-        }
-        if(rutaCurso.size()>1){ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),rutaCurso.get(rutaCurso.size()-2));
-        car.setRotate(getAngulo(rutaCurso.get(rutaCurso.size()-2)));
-        }else{ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),fin); }
-        
-        tt.setNode(car);
-        tt.setRate(5);
-        tt.setOnFinished((event) -> {
+        if(respuesta.getDistancia()!=-1){
+            rutaCurso = respuesta.getRuta();
             if(rutaCurso.size()>1){
-                nodAct = rutaCurso.get(rutaCurso.size()-2);
-                linea(rutaCurso.get(rutaCurso.size()-1), rutaCurso.get(rutaCurso.size()-2),2);
-                calcMejorR(1);
-            }else{
-                LocalTime lt = LocalTime.now();
-                Long tiempo = SECONDS.between(localTime, lt);
-                lblCosRea.setText("" + Math.round((distanciaReal*1.2) + (tiempo*0.9)));
+                distanciaReal= distanciaReal + calles[rutaCurso.get(rutaCurso.size()-1).getId()][rutaCurso.get(rutaCurso.size()-2).getId()].getPeso();
+                lblDisRea.setText(""+  distanciaReal);
             }
-        });
-        if(i==1 && mover==true){
-            tt.play();
+            if(rutaCurso.size()>1){ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),rutaCurso.get(rutaCurso.size()-2));
+            car.setRotate(getAngulo(rutaCurso.get(rutaCurso.size()-2)));
+            }else{ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),fin); }
+
+            tt.setNode(car);
+            tt.setRate(5);
+            tt.setOnFinished((event) -> {
+                if(rutaCurso.size()>1){
+                    nodAct = rutaCurso.get(rutaCurso.size()-2);
+                    linea(rutaCurso.get(rutaCurso.size()-1), rutaCurso.get(rutaCurso.size()-2),2);
+                    calcMejorR(1);
+                }else{
+                    LocalTime lt = LocalTime.now();
+                    Long tiempo = SECONDS.between(localTime, lt);
+                    lblCosRea.setText("" + Math.round((distanciaReal*1.2) + (tiempo*0.9)));
+                }
+            });
+            if(i==1 && mover==true){
+                tt.play();
+            }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sin Camino");
+            alert.setHeaderText(null);
+            alert.setContentText("Debido a un mantenimiento o accidente es imposible llegar al destino");
+            alert.show();
         }
     }
 

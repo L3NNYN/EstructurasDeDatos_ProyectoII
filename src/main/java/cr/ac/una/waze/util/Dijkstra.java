@@ -68,6 +68,9 @@ public class Dijkstra {
                     mien=false;
                 }
                 aux2 = ruta[aux2];
+            }else{
+                mien=false;
+                return new Respuesta(null,-1);
             }
         }
         return new Respuesta(camino,peso[fin.getId()]);

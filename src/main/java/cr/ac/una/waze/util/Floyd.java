@@ -82,9 +82,11 @@ public class Floyd {
                 }
             }else{
                 eva=false;
+                if(peso[a.getId()][aux2] == Integer.MAX_VALUE){
+                    return new Respuesta(null, -1);
+                }
             }
 	}
-        
         return new Respuesta(camino, peso[a.getId()][b.getId()]);
     }
     
