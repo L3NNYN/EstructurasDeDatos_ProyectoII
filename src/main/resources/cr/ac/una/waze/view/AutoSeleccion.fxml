@@ -14,22 +14,22 @@
                <children>
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car" />
+                        <ImageView fx:id="imgvBtnCar" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car" />
                      </graphic>
                   </Button>
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat2" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car2" />
+                        <ImageView fx:id="imgvBtnCar2" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car2" />
                      </graphic>
                   </Button>
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat3" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car3" />
+                        <ImageView fx:id="imgvBtnCar3" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car3" />
                      </graphic>
                   </Button>
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat4" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car4" />
+                        <ImageView fx:id="imgvBtnCar4" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car4" />
                      </graphic>
                   </Button>
                </children>
