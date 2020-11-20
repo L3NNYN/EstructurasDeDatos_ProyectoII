@@ -653,10 +653,10 @@ public class MapaController extends Controller implements Initializable {
         car.setY(-6);
         
         localTime = LocalTime.now();
-        calcMejorR();
+        calcMejorR(0);
     }
     
-    private void calcMejorR(){
+    private void calcMejorR(int i){
         Respuesta respuesta;
         if(algorit==1){
             respuesta = new Floyd().getCamino(nodAct, finNod, calles, nodos);
@@ -678,16 +678,15 @@ public class MapaController extends Controller implements Initializable {
             if(rutaCurso.size()>1){
                 nodAct = rutaCurso.get(rutaCurso.size()-2);
                 linea(rutaCurso.get(rutaCurso.size()-1), rutaCurso.get(rutaCurso.size()-2),2);
-                calcMejorR();
+                calcMejorR(1);
             }else{
                 LocalTime lt = LocalTime.now();
                 Long tiempo = SECONDS.between(localTime, lt);
-                lblCosRea.setText("" + Math.round((distanciaReal*1.2) + (tiempo*0.7)));
+                lblCosRea.setText("" + Math.round((distanciaReal*1.2) + (tiempo*0.9)));
             }
         });
-        if(btnMover.isSelected()){
-            btnMover.setSelected(false);
-            mover=false;
+        if(i==1 && mover==true){
+            tt.play();
         }
     }
 
