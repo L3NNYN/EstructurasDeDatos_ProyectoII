@@ -706,6 +706,7 @@ public class MapaController extends Controller implements Initializable {
     @FXML
     private void onActionBtnLimpiar(ActionEvent event) {
         Limpiar();
+        IniMap();
     }
 
     @FXML
