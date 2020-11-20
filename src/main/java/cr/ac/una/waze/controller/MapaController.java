@@ -678,7 +678,9 @@ public class MapaController extends Controller implements Initializable {
         if(respuesta.getDistancia()!=-1){
             rutaCurso = respuesta.getRuta();
             if(rutaCurso.size()>1){
-                distanciaReal= distanciaReal + calles[rutaCurso.get(rutaCurso.size()-1).getId()][rutaCurso.get(rutaCurso.size()-2).getId()].getPeso();
+                if(rutaCurso.get(rutaCurso.size()-1).getId() != rutaCurso.get(rutaCurso.size()-2).getId()){
+                    distanciaReal= distanciaReal + calles[rutaCurso.get(rutaCurso.size()-1).getId()][rutaCurso.get(rutaCurso.size()-2).getId()].getPeso();
+                }
                 lblDisRea.setText(""+  distanciaReal);
             }
             if(rutaCurso.size()>1){ tt = getMovimiento(rutaCurso.get(rutaCurso.size()-1),rutaCurso.get(rutaCurso.size()-2));
@@ -720,6 +722,8 @@ public class MapaController extends Controller implements Initializable {
     @FXML
     private void onActionBtnPAB(ActionEvent event) {
         Limpiar();
+        btnMover.setSelected(false);
+        mover=false;
         click=1;
     }
     
