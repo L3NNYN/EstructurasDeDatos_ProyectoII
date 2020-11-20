@@ -145,6 +145,10 @@ Button{
     -fx-image: url('waze.png');
 }
 
+.img-oficial{
+    -fx-image: url('oficial.png');
+}
+
 .nodo-select{
     -fx-background-color: #c7c7c7;
 }

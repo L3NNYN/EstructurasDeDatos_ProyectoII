@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="720.0" maxWidth="930.0" minHeight="720.0" minWidth="930.0" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="720.0" maxWidth="930.0" minHeight="720.0" minWidth="930.0" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
    <children>
       <HBox layoutX="503.0" layoutY="213.0" prefHeight="720.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -97,12 +97,15 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-mostrar" />
                      </graphic></Button>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="178.0" styleClass="button" text="Reglas">
+                  <MenuButton alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="178.0" styleClass="button" text="Eventos">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#onActionBtnMantemiento" styleClass="button" text="Mantenimiento de calle" />
                       <MenuItem mnemonicParsing="false" onAction="#onActionbtnAccidente" styleClass="button" text="Accidente" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionBtnTrafico" styleClass="button" text="Trafico" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionBtnTrafico" styleClass="button" text="Transito alto" />
                     </items>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-oficial" />
+                     </graphic>
                   </MenuButton>
                </children>
             </VBox>
