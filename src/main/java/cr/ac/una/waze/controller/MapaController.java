@@ -34,6 +34,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import static java.time.temporal.ChronoUnit.SECONDS;
+import javafx.scene.control.CheckBox;
 
 /**
  * FXML Controller class
@@ -100,6 +101,10 @@ public class MapaController extends Controller implements Initializable {
     
     TranslateTransition tt;
     
+    Boolean mover;
+    @FXML
+    private CheckBox btnMover;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nodos = new ArrayList<>();
@@ -107,6 +112,7 @@ public class MapaController extends Controller implements Initializable {
         click=0;
         regla=0;
         distanciaReal=0;
+        mover=false;
     }    
 
     @Override
@@ -115,6 +121,7 @@ public class MapaController extends Controller implements Initializable {
         IniMap();
         algorit=1;
         distanciaReal=0;
+        tt=null;
     }
     
     private void iniList(){
@@ -601,6 +608,7 @@ public class MapaController extends Controller implements Initializable {
                     l.setStroke(Paint.valueOf("#1aff1a"));
                 }
             }
+            regla=0;
         });
         if(col==1){
             l.setStroke(Paint.valueOf("#bf00ff")); 
@@ -632,10 +640,10 @@ public class MapaController extends Controller implements Initializable {
         car.setFitWidth(22);
         car.getStyleClass().add(FlowController.getCarro());
         
-        TranslateTransition tti = getMovimiento(ini,rutaIni.get(rutaIni.size()-1));
-        
-        tti.setNode(car);
-        tti.play();
+//        TranslateTransition tti = getMovimiento(ini,rutaIni.get(rutaIni.size()-1));
+//        
+//        tti.setNode(car);
+//        tti.play();
         
         for(int i=rutaIni.size()-2; i>=0;i--){
             linea(rutaIni.get(i+1), rutaIni.get(i),1);
@@ -677,7 +685,10 @@ public class MapaController extends Controller implements Initializable {
                 lblCosRea.setText("" + Math.round((distanciaReal*1.2) + (tiempo*0.7)));
             }
         });
-        tt.play();
+        if(btnMover.isSelected()){
+            btnMover.setSelected(false);
+            mover=false;
+        }
     }
 
     private void mostrarNodos(){
@@ -742,5 +753,18 @@ public class MapaController extends Controller implements Initializable {
     @FXML
     private void onActionBtnTrafico(ActionEvent event) {
         regla=3;
+    }
+
+    @FXML
+    private void onActionMover(ActionEvent event) {
+        if(tt!=null){
+            if(!mover){
+                tt.play();
+                mover=true;
+            }else{
+                mover=false;
+                tt.pause();
+            }
+        }
     }
 }
