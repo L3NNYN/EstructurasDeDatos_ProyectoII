@@ -602,6 +602,9 @@ public class MapaController extends Controller implements Initializable {
                 }else if(calles[a.getId()][b.getId()]!=null && calles[b.getId()][a.getId()]==null){
                     calles[a.getId()][b.getId()].setEstado("N");
                 }
+                if(calles[a.getId()][b.getId()].getTrafico()>1){
+                    calles[a.getId()][b.getId()].setTrafico(calles[a.getId()][b.getId()].getTrafico()-1);
+                }
                 if(col==1){
                     l.setStroke(Paint.valueOf("#bf00ff")); 
                 }else{
