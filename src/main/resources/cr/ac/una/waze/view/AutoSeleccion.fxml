@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.AutoSeleccionController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="230.0" prefWidth="458.0" text="Seleccione un Vehiculo">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <FlowPane alignment="CENTER" hgap="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
+                     <graphic>
+                        <ImageView fx:id="imgvBtnCar" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car" />
+                     </graphic>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat2" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
+                     <graphic>
+                        <ImageView fx:id="imgvBtnCar2" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car2" />
+                     </graphic>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat3" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
+                     <graphic>
+                        <ImageView fx:id="imgvBtnCar3" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car3" />
+                     </graphic>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionSelectCat4" prefHeight="130.0" prefWidth="136.0" styleClass="car" text=".">
+                     <graphic>
+                        <ImageView fx:id="imgvBtnCar4" fitHeight="150.0" fitWidth="150.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="car4" />
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+            <Button fx:id="btnIrMapa" mnemonicParsing="false" onAction="#onActionIrAlMapa" prefHeight="44.0" prefWidth="127.0" text="Ir al mapa" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="720.0" maxWidth="930.0" minHeight="720.0" minWidth="930.0" prefHeight="720.0" prefWidth="930.0" styleClass="menu-principal-panes" stylesheets="@../resources/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.waze.controller.MapaController">
+   <children>
+      <HBox layoutX="503.0" layoutY="213.0" prefHeight="720.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imvMapa" fitHeight="711.0" fitWidth="596.0" onMouseClicked="#onMouseClickedMapa" pickOnBounds="true" preserveRatio="true" styleClass="mapa" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="Salida" />
+                              <Circle fill="#3333ff" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="LLegada" />
+                              <Circle fill="#1aff1a" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <CheckBox fx:id="btnMover" mnemonicParsing="false" onAction="#onActionMover" prefHeight="43.0" prefWidth="135.0" styleClass="button" text="Mover" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="319.0" spacing="8.0">
+                     <children>
+                        <Label text="Distancia prevista:" />
+                        <Label fx:id="lblDisPre" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="319.0" spacing="8.0">
+                     <children>
+                        <Label text="Distancia real:" />
+                        <Label fx:id="lblDisRea" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="319.0" spacing="8.0">
+                     <children>
+                        <Label text="Costo prevista:" />
+                        <Label fx:id="lblCosPre" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="319.0" spacing="8.0">
+                     <children>
+                        <Label text="Costo real:" />
+                        <Label fx:id="lblCosRea" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="319.0" spacing="50.0">
+                     <children>
+                        <RadioButton fx:id="rbtnF" mnemonicParsing="false" onAction="#onActionRbtnF" selected="true" text="Floyd">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="algoritmo" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rbtnD" mnemonicParsing="false" onAction="#onActionRbtnD" text="Dijkstra" toggleGroup="$algoritmo" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnPAB" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionBtnPAB" text="Seleccionar punto A y B">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-ruta" />
+                     </graphic></Button>
+                  <Button fx:id="btnLimpiar" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionBtnLimpiar" prefHeight="40.0" prefWidth="177.0" text="Limpiar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-limpiar" />
+                     </graphic></Button>
+                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onActionBtnMNodos" prefHeight="40.0" prefWidth="178.0" text="Mostrar nodos">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-mostrar" />
+                     </graphic></Button>
+                  <MenuButton alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="178.0" styleClass="button" text="Eventos">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onActionBtnMantemiento" styleClass="button" text="Mantenimiento de calle" />
+                      <MenuItem mnemonicParsing="false" onAction="#onActionbtnAccidente" styleClass="button" text="Accidente" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionBtnTrafico" styleClass="button" text="Transito alto" />
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="img-oficial" />
+                     </graphic>
+                  </MenuButton>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>
